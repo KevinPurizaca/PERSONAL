@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
@@ -19,5 +21,16 @@ export class LoginComponent {
 
     password!: string;
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(
+        public layoutService: LayoutService,
+        private router: Router,    
+        )
+     {       
+     }
+
+    login(){
+        localStorage.setItem('token', "123456789abcdefghijklmnopqtrstuvwxyz");
+        this.router.navigate(['/inicio/home']);
+
+    }
 }

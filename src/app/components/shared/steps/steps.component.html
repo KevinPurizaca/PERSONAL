@@ -1,0 +1,19 @@
+<div [ngClass]="{ 'p-steps p-component': true, 'p-readonly': readonly }">
+  <ul role="tablist">
+      <li
+          *ngFor="let item of model; let i = index" 
+          class="p-steps-item"
+      >
+          <a [ngClass]="{'check': activeIndex > 0 && i <= activeIndex, 'current': activeIndex == i && activeIndex < model.length -1 }"
+              class="p-menuitem-link"
+              (click)="itemClick($event, item, i)"
+              (keydown.enter)="itemClick($event, item, i)"
+          >
+              <span class="p-steps-number">{{ i + 1 }}</span>
+              <span class="p-steps-title">{{ item.label }}</span>
+          </a>
+      </li>
+  </ul>
+</div>
+
+<!-- <a [ngClass]="{'check': activeIndex > 0 && i <= activeIndex, 'current': activeIndex > 0  &&  activeIndex == i && activeIndex < model.length -1 }"> -->

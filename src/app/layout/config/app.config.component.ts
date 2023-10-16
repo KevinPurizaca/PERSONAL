@@ -47,7 +47,7 @@ export class AppConfigComponent {
     }
 
     get ripple(): boolean {
-        return this.layoutService.config.ripple;
+        return true;//this.layoutService.config.ripple;
     }
 
     set ripple(_val: boolean) {
