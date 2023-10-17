@@ -15,7 +15,7 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             {
-                label: 'Home',
+                label: '',
                 items: [
                     { label: 'Dashboard',
                     icon: 'pi pi-fw pi-home', routerLink: ['/inicio/home']
@@ -23,30 +23,19 @@ export class AppMenuComponent implements OnInit {
                   }
                 ]
             },
-            {
-                label: '',
+            {                
                 items: [
                     { 
                     label: 'Administracion',
                     items:[
-                        { label: 'Perfiles', icon: 'pi pi-user', routerLink: ['/clientes'] },
-                        { label: 'Clientes', icon: 'pi pi-user', routerLink: ['/clientes'] },
-                        { label: 'Usuarios', icon: 'pi pi-user', routerLink: ['/uikit/input'] },
-                        { label: 'Tablas Auxiliar', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel'] },
+                        { label: 'Perfiles', icon: 'pi pi-user', routerLink: ['/administracion/perfiles'] },
+                        { label: 'Usuarios', icon: 'pi pi-user', routerLink: ['/administracion/usuarios'] },
+                        { label: 'Tablas Auxiliar', icon: 'pi pi-fw pi-bookmark', routerLink: ['/administracion/tabla-auxiliar'] },
                     ] },
                     
                 ]
             },
-            // {
-            //     label: 'Administracion',
-            //     items: [
-            //         { label: 'Perfiles', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
-            //         { label: 'Usuarios', icon: 'pi pi-user', routerLink: ['/uikit/input'] },
-            //         { label: 'Tablas Auxiliar', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel'] },
-            //     ]
-            // },
-            {
-                label: '',
+            {                
                 items: [
                     {
                         label: 'Maestras',                       
@@ -60,7 +49,27 @@ export class AppMenuComponent implements OnInit {
                     }      
                ]
             },
-
-                  ];
+            {
+                label: '',
+                items: [
+                    { label: 'Ventas',
+                    icon: 'pi pi-fw pi-home', routerLink: ['/maestras/ventas']
+                  
+                  }
+                ]
+            },
+            {                
+                items: [
+                    { 
+                    label: 'Reportes',
+                    items:[
+                        { label: 'Reporte 1', icon: 'pi pi-user', routerLink: ['/administracion/perfiales'] },
+                        { label: 'Reporte 2', icon: 'pi pi-user', routerLink: ['/administracion/usuaraios'] },
+                        { label: 'Reporte 3', icon: 'pi pi-fw pi-bookmark', routerLink: ['/administracion/tabla-aauxiliar'] },
+                    ] },
+                    
+                ]
+            },
+        ];
     }
 }

@@ -34,20 +34,22 @@ export class LoginComponent {
      }
 
     login(){
-        let req={
-            vCorreo:'k@gmail.com',
-            vPassword:'123456'
-        }
-        this.httpcoreservice.post(req,'Usuario/Login').subscribe((res:any)=>
-        {
-            if(res.isSuccess){
-                localStorage.setItem('token', "123456789abcdefghijklmnopqtrstuvwxyz");
-                this.router.navigate(['/inicio/home']);
-            }
-            else{
-                this.commonService.HanddleErrorMessage2(res.message);
-            }
-        })
+        this.router.navigate(['/inicio/home']);
+
+        // let req={
+        //     vCorreo:'k@gmail.com',
+        //     vPassword:'123456'
+        // }
+        // this.httpcoreservice.post(req,'Usuario/Login').subscribe((res:any)=>
+        // {
+        //     if(res.isSuccess){
+        //         localStorage.setItem('token', "123456789abcdefghijklmnopqtrstuvwxyz");
+        //         this.router.navigate(['/inicio/home']);
+        //     }
+        //     else{
+        //         this.commonService.HanddleErrorMessage2(res.message);
+        //     }
+        // })
         
 
     }

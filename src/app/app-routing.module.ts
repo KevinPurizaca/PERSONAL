@@ -29,6 +29,10 @@ const routes: Routes = [
         loadChildren: () => import('./views/maestras/maestras.module').then(m => m.MaestrasModule)/*, canActivate: [UserLoggedGuard]*/
       },
       {
+        path: 'administracion',
+        loadChildren: () => import('./views/administracion/administracion.module').then(m => m.AdministracionModule)/*, canActivate: [UserLoggedGuard]*/
+      },
+      {
         path: 'ventas',
         loadChildren: () => import('./views/maestras/ventas/ventas.module').then(m => m.VentasModule)/*, canActivate: [UserLoggedGuard]*/
       },

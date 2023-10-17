@@ -8,6 +8,10 @@ const routes: Routes = [
     path: 'products',
     loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)/*, canActivate: [UsuarioGuard]*/
   },
+  {
+    path: 'ventas',
+    loadChildren: () => import('./ventas/ventas.module').then(m => m.VentasModule)/*, canActivate: [UsuarioGuard]*/
+  },
 ]
 
 @NgModule({
