@@ -1,0 +1,56 @@
+<div class="col-12">
+    <p-panel header="Busqueda de Productos">
+        <form [formGroup]="formBusqueda" (ngSubmit)="buscar()">
+            <div class="p-fluid p-formgrid grid">
+              <div class="col-12 md:col-3">
+                <label class="label-filter-text">Nombre Producto</label>
+                <input formControlName="txtNombre" type="text" pInputText placeholder="Nombres"
+                  class="p-inputtext p-component p-element" />
+                <small class="ng-dirty ng-invalid" *ngIf="formBusqueda.get('txtNombre')?.hasError('pattern')">Ingrese solo
+                  Letras</small>        
+              </div>
+
+              <div class="col-12 md:col-3">
+                <label class="label-filter-text">Categorias</label>
+                <p-dropdown formControlName="cboPerfil" optionLabel="value"
+                  optionValue="id" [showClear]="true">
+                </p-dropdown>
+              </div>
+              <div class="col-12 md:col-3">
+                <label class="label-filter-text">Marcas</label>
+                <!-- <p-dropdown formControlName="cboTipoDocumento" placeholder="Seleccione" [options]="lstipodocumentocb"
+                  [(ngModel)]="req.iid_tipo_documento" optionLabel="value" optionValue="id" [showClear]="true">
+                </p-dropdown> -->
+                <p-dropdown formControlName="cboTipoDocumento" placeholder="Seleccione" 
+                  optionLabel="value" optionValue="id" [showClear]="true">
+                </p-dropdown>
+              </div>
+        
+              <div class="col-12 md:col-3">
+                <label class="label-filter-text">Estado</label>
+                <p-dropdown formControlName="cboEstado" placeholder="Seleccione"
+                  optionLabel="value" optionValue="id" [showClear]="true">
+                </p-dropdown>
+              </div>
+            </div>
+        
+            <div class="flex flex-wrap sm:flex-row">
+              <div class="sm:mr-auto mb-3 mr-3">
+                <button pButton label="Agregar Producto" type="button" icon="pi pi-plus" (click)="newUsuario()"
+                  class="p-button-help" ></button>
+              </div>
+              <div class="mb-3 mr-3">
+                <button pButton label="Buscar" icon="pi pi-search" type="submit"
+                  class="p-button-outlined p-button-primary"></button>
+              </div>
+              <div class="">
+                <button pButton label="Limpiar" type="button" icon="pi pi-trash" (click)="limpiarFrm()"
+                  class="p-button-outlined p-button-secondary"></button>
+              </div>
+            </div>
+          </form>
+    </p-panel>
+</div>
+<div class="col-12">
+    <p-panel></p-panel>
+</div>

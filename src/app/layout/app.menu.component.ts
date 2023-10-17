@@ -49,16 +49,16 @@ export class AppMenuComponent implements OnInit {
                 label: '',
                 items: [
                     {
-                        label: 'Maestras',
+                        label: 'Maestras',                       
                         items:[
-                            { label: 'Productos', icon: 'pi pi-fw pi-id-card', routerLink: ['/products'] },
-                            { label: 'Categorias', icon: 'pi pi-fw pi-id-card', routerLink: ['/categories'] },
-                            { label: 'Marcas', icon: 'pi pi-fw pi-id-card', routerLink: ['/marcas'] },
-                            { label: 'Proveedores', icon: 'pi pi-user', routerLink: ['/proveedores'] },
-                            { label: 'Clientes', icon: 'pi pi-user', routerLink: ['/clientes'] },
+                            { label: 'Productos', icon: 'pi pi-fw pi-id-card', routerLink: ['/maestras/products'] },
+                            { label: 'Categorias', icon: 'pi pi-fw pi-id-card', routerLink: ['/maestras/categories'] },
+                            { label: 'Marcas', icon: 'pi pi-fw pi-id-card', routerLink: ['/maestras/marcas'] },
+                            { label: 'Proveedores', icon: 'pi pi-user', routerLink: ['/maestras/proveedores'] },
+                            { label: 'Clientes', icon: 'pi pi-user', routerLink: ['/maestras/clientes'] },
                         ],
                     }      
-                        ]
+               ]
             },
 
                   ];

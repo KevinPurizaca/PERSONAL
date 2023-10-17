@@ -12,7 +12,9 @@ export class AppConfigComponent {
 
     scales: number[] = [12, 13, 14, 15, 16];
 
-    constructor(public layoutService: LayoutService, public menuService: MenuService) { }
+    constructor(public layoutService: LayoutService, public menuService: MenuService) { 
+        this.applyScale();
+    }
 
     get visible(): boolean {
         return this.layoutService.state.configSidebarVisible;
@@ -97,6 +99,6 @@ export class AppConfigComponent {
     }
 
     applyScale() {
-        document.documentElement.style.fontSize = this.scale + 'px';
+        document.documentElement.style.fontSize =/* this.scale +*/ '12px';
     }
 }

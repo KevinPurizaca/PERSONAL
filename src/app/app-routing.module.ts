@@ -25,12 +25,12 @@ const routes: Routes = [
     path: '', component: AppLayoutComponent,
     children: [
       {
-        path: 'products',
-        loadChildren: () => import('./views/products/products.module').then(m => m.ProductsModule)/*, canActivate: [UserLoggedGuard]*/
+        path: 'maestras',
+        loadChildren: () => import('./views/maestras/maestras.module').then(m => m.MaestrasModule)/*, canActivate: [UserLoggedGuard]*/
       },
       {
         path: 'ventas',
-        loadChildren: () => import('./views/ventas/ventas.module').then(m => m.VentasModule)/*, canActivate: [UserLoggedGuard]*/
+        loadChildren: () => import('./views/maestras/ventas/ventas.module').then(m => m.VentasModule)/*, canActivate: [UserLoggedGuard]*/
       },
     ]
   },

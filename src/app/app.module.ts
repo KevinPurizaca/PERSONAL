@@ -13,8 +13,8 @@ import { MessageService, ConfirmationService, SharedModule} from 'primeng/api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
 import { AuthenticationService } from './core/services/authentication.service';
-import { ProductsComponent } from './views/products/products.component';
-import { VentasComponent } from './views/ventas/ventas.component';
+import { ProductsComponent } from './views/maestras/products/products.component';
+import { VentasComponent } from './views/maestras/ventas/ventas.component';
 
 @NgModule({
   declarations: [
