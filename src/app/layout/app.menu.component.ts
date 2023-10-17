@@ -17,38 +17,50 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Home',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/inicio/home'] }
+                    { label: 'Dashboard',
+                    icon: 'pi pi-fw pi-home', routerLink: ['/inicio/home']
+                  
+                  }
                 ]
             },
             {
-                label: 'Administracion',
+                label: '',
                 items: [
-                    { label: 'Perfiles', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
-                    { label: 'Usuarios', icon: 'pi pi-user', routerLink: ['/uikit/input'] },
-                    { label: 'Tablas Auxiliar', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel'] },
-                ]
-            },
-            {
-                label: 'Maestras',
-                items: [
-                    { label: 'Productos', icon: 'pi pi-fw pi-id-card', routerLink: ['/products'] },
-                    { label: 'Categorias', icon: 'pi pi-fw pi-id-card', routerLink: ['/categories'] },
-                    { label: 'Marcas', icon: 'pi pi-fw pi-id-card', routerLink: ['/marcas'] },
-                    { label: 'Proveedores', icon: 'pi pi-user', routerLink: ['/proveedores'] },
-                    { label: 'Clientes', icon: 'pi pi-user', routerLink: ['/clientes'] },
-
-                ]
-            },
-            {
-                label: 'Administracion',
-                items: [
-                    { label: 'Perfiles',
+                    { 
+                    label: 'Administracion',
                     items:[
-                        { label: 'Clientes', icon: 'pi pi-user', routerLink: ['/clientes'] }
+                        { label: 'Perfiles', icon: 'pi pi-user', routerLink: ['/clientes'] },
+                        { label: 'Clientes', icon: 'pi pi-user', routerLink: ['/clientes'] },
+                        { label: 'Usuarios', icon: 'pi pi-user', routerLink: ['/uikit/input'] },
+                        { label: 'Tablas Auxiliar', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel'] },
                     ] },
                     
                 ]
             },
+            // {
+            //     label: 'Administracion',
+            //     items: [
+            //         { label: 'Perfiles', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
+            //         { label: 'Usuarios', icon: 'pi pi-user', routerLink: ['/uikit/input'] },
+            //         { label: 'Tablas Auxiliar', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel'] },
+            //     ]
+            // },
+            {
+                label: '',
+                items: [
+                    {
+                        label: 'Maestras',
+                        items:[
+                            { label: 'Productos', icon: 'pi pi-fw pi-id-card', routerLink: ['/products'] },
+                            { label: 'Categorias', icon: 'pi pi-fw pi-id-card', routerLink: ['/categories'] },
+                            { label: 'Marcas', icon: 'pi pi-fw pi-id-card', routerLink: ['/marcas'] },
+                            { label: 'Proveedores', icon: 'pi pi-user', routerLink: ['/proveedores'] },
+                            { label: 'Clientes', icon: 'pi pi-user', routerLink: ['/clientes'] },
+                        ],
+                    }      
+                        ]
+            },
+
                   ];
     }
 }
