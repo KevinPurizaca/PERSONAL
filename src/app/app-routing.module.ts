@@ -21,13 +21,25 @@ const routes: Routes = [
       },
     ],
   },
-
+  {
+    path: '', component: AppLayoutComponent,
+    children: [
+      {
+        path: 'products',
+        loadChildren: () => import('./views/products/products.module').then(m => m.ProductsModule)/*, canActivate: [UserLoggedGuard]*/
+      },
+      {
+        path: 'ventas',
+        loadChildren: () => import('./views/ventas/ventas.module').then(m => m.VentasModule)/*, canActivate: [UserLoggedGuard]*/
+      },
+    ]
+  },
   {
     path: 'auth',
     loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule)
   },
   { path: 'pages/notfound', component: NotfoundComponent },
-{ path: 'login', component: LoginComponent/*, canActivate: [IntentoLoginGuard]*/ },
+  { path: 'login', component: LoginComponent/*, canActivate: [IntentoLoginGuard]*/ },
   { path: '**', redirectTo: 'pages/notfound' },
 ];
 
