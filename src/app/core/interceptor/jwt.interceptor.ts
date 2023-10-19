@@ -34,7 +34,7 @@ export class JwtInterceptor implements HttpInterceptor {
       //   },
       // });
     } else {
-      this.router.navigate(['/login']);
+      //this.router.navigate(['/login']);
       // request = request.clone({
       //   setHeaders: {
       //    // 'Ocp-Apim-Subscription-Key': environment.key_ApiManagement

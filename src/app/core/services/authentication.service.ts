@@ -53,7 +53,7 @@ export class AuthenticationService {
   // }
 
   logOut() {
-    this.router.navigate(['/login']);
+   // this.router.navigate(['/login']);
     localStorage.clear();
     sessionStorage.clear();
     

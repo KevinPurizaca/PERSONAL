@@ -71,7 +71,8 @@ import { StepsComponent } from '../components/shared/steps/steps.component';
     CardModule,
     ToolbarModule,
     SpeedDialModule,
-    SelectButtonModule
+    SelectButtonModule,
+    
   ],
   exports: [
     CommonModule,

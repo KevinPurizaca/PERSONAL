@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpCoreService } from 'src/app/core/services/httpCore.service';
+import { CommonService } from 'src/app/service/common.service';
 
 @Component({
   selector: 'app-products',
@@ -14,7 +16,26 @@ export class ProductsComponent implements OnInit{
 
   formBusqueda: FormGroup;
 
-  constructor(    fb: FormBuilder,
+  lstProductos:any[] =[];
+  totalRecord:number=0;
+
+  req={
+    iidProducto  : -1,
+    vNombre : "",
+    vCodigo : "",
+    iidMarca : -1,
+    iidCategoria :-1 ,
+    iidProveedor : -1,
+    iEstado : -1,
+    pageNum : 0,
+    pageSize :5 ,
+  }
+
+  constructor(   
+     fb: FormBuilder,
+     private httpcoreservice:HttpCoreService,
+     private commonService: CommonService,
+
     ){
       this.formBusqueda = fb.group({
         cboPerfil: [-1],
@@ -28,7 +49,19 @@ export class ProductsComponent implements OnInit{
       });
   }
   ngOnInit(): void {
-    
+    this.loadData(this.req);    
+  }
+
+  loadData(req:any){
+    this.httpcoreservice.post(req,'Producto/ListarProductos').subscribe( (res:any)=>{
+      if(res.isSuccess){
+        this.lstProductos = res.data;
+        this.totalRecord = res.totalRecord;
+      }
+      else
+      this.commonService.HanddleErrorMessage(res);
+    }     
+    )
   }
   buscar(){}
   newUsuario(){}

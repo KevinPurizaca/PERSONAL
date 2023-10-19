@@ -54,5 +54,32 @@
 <div class="col-12">
     <p-panel header="Lista de Productos">
       
+<p-table [value]="lstProductos" responsiveLayout="stack" [breakpoint]="'960px'" [tableStyle]="{'min-width': '50rem'}">
+  <ng-template pTemplate="header" let-columns>
+      <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Reviews</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-data >
+      <tr>
+          <td><span class="p-column-title font-bold">Name</span>{{data.vNombre}}</td>
+          <td><span class="p-column-title font-bold">Price</span>{{data.iPrecio | currency:'USD'}}</td>
+          <td><span class="p-column-title font-bold">Categoria</span>{{data.vCategoria}}</td>
+          <td><span class="p-column-title font-bold">Stock</span>{{data.iStock}}</td>
+          <td><span class="p-column-title font-bold">Estado</span>{{data.vStock}}
+            <!-- <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)"></p-tag> -->
+          </td>
+          <td>
+            <!-- <span class="p-column-title">Reviews</span><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false">              
+            </p-rating> -->
+          </td>
+      </tr>
+  </ng-template>
+</p-table>
     </p-panel>
 </div>
