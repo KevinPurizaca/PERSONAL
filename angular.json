@@ -3,103 +3,106 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sistema-ventas-scss": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/sistema-ventas-scss",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [             
-            ]
+      "sakai-ng": {
+          "projectType": "application",
+          "schematics": {
+              "@schematics/angular:component": {
+                  "style": "scss"
+              }
           },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "5mb",
-                  "maximumError": "10mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2mb",
-                  "maximumError": "4mb"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "sistema-ventas-scss:build:production"
-            },
-            "development": {
-              "browserTarget": "sistema-ventas-scss:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "sistema-ventas-scss:build"
+          "root": "",
+          "sourceRoot": "src",
+          "prefix": "app",
+          "architect": {
+              "build": {
+                  "builder": "@angular-devkit/build-angular:browser",
+                  "options": {
+                      "outputPath": "dist/sakai-ng",
+                      "index": "src/index.html",
+                      "main": "src/main.ts",
+                      "polyfills": [
+                          "zone.js"
+                      ],
+                      "tsConfig": "tsconfig.app.json",
+                      "inlineStyleLanguage": "scss",
+                      "assets": [
+                          "src/favicon.ico",
+                          "src/assets"
+                      ],
+                      "styles": [
+                          "src/styles.scss"
+                      ],
+                      "scripts": []
+                  },
+                  "configurations": {
+                      "production": {
+                          "budgets": [
+                              {
+                                  "type": "initial",
+                                  "maximumWarning": "1mb",
+                                  "maximumError": "5mb"
+                              },
+                              {
+                                  "type": "anyComponentStyle",
+                                  "maximumWarning": "2kb",
+                                  "maximumError": "4kb"
+                              }
+                          ],
+                          "outputHashing": "all"
+                      },
+                      "development": {
+                          "buildOptimizer": false,
+                          "optimization": false,
+                          "vendorChunk": true,
+                          "extractLicenses": false,
+                          "sourceMap": true,
+                          "namedChunks": true
+                      }
+                  },
+                  "defaultConfiguration": "production"
+              },
+              "serve": {
+                  "builder": "@angular-devkit/build-angular:dev-server",
+                  "configurations": {
+                      "production": {
+                          "buildTarget": "sakai-ng:build:production"
+                      },
+                      "development": {
+                          "buildTarget": "sakai-ng:build:development"
+                      }
+                  },
+                  "defaultConfiguration": "development"
+              },
+              "extract-i18n": {
+                  "builder": "@angular-devkit/build-angular:extract-i18n",
+                  "options": {
+                      "buildTarget": "sakai-ng:build"
+                  }
+              },
+              "test": {
+                  "builder": "@angular-devkit/build-angular:karma",
+                  "options": {
+                      "polyfills": [
+                          "zone.js",
+                          "zone.js/testing"
+                      ],
+                      "tsConfig": "tsconfig.spec.json",
+                      "karmaConfig": "karma.conf.js",
+                      "inlineStyleLanguage": "scss",
+                      "assets": [
+                          "src/favicon.ico",
+                          "src/assets"
+                      ],
+                      "styles": [
+                          "src/styles.scss"
+                      ],
+                      "scripts": []
+                  }
+              }
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
-          }
-        }
       }
-    }
+  },
+  "cli": {
+    "analytics": "c081afa9-01e1-4ef0-9369-7c1c1b839ade"
   }
 }
