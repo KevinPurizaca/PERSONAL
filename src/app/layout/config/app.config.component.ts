@@ -85,6 +85,8 @@ export class AppConfigComponent {
     }
 
     changeTheme(theme: string, colorScheme: string) {
+        localStorage.setItem('theme_admin',theme);//guardamos el qthema en el local sqtorage
+
         this.theme = theme;
         this.colorScheme = colorScheme;
     }
