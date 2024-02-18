@@ -12,3 +12,13 @@ $gutter: 1rem; //for primeflex grid system
 @import "assets/demo/styles/flags/flags.css";
 @import "assets/demo/styles/badges.scss";
 @import "assets/demo/styles/code.scss";
+@import "variables.scss";
+
+:root {
+    --color-secundario: #ffc82f;
+    --color-primario: #156185;
+    --azul-suave: #156185;
+    --bg-row-total: #e9ecef;
+    --text-row-total: #156185;
+    --color-azul-tablas: #156185;
+  }

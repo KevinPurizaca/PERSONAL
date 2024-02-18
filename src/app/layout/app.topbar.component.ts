@@ -9,6 +9,7 @@ import { LayoutService } from "./service/app.layout.service";
 export class AppTopBarComponent {
 
     items!: MenuItem[];
+    items2: MenuItem[] | undefined;
 
     @ViewChild('menubutton') menuButton!: ElementRef;
 
@@ -21,23 +22,99 @@ export class AppTopBarComponent {
 
     constructor(public layoutService: LayoutService) 
     {
-        let theme = localStorage.getItem('theme_admin') || 'lara-light-indigo';//sino existe lo cambiamos a tema por defecto
-        this.icon =theme.includes('light')?'pi pi-sun':'pi pi-moon';
+        let theme = localStorage.getItem('theme_admin') ||'saga-blue';//sino existe lo cambiamos a tema por defecto
+        this.icon = theme === 'saga-blue'?'pi pi-moon':'pi pi-sun';
 
-        const newColor =  theme.includes('light')? theme.replace('light','dark') : theme.replace('dark','light');//light':'dark';
+        const newColor =  theme === 'saga-blue'? 'light': 'dark';//light':'dark';
         this.changeTheme(theme, newColor);
 
+        this.getMenu();
     }
 
-
+    getMenu(){
+        this.items2 = [
+            {
+                label: 'File',
+                icon: 'pi pi-file',
+                items: [
+                    {
+                        label: 'New',
+                        icon: 'pi pi-plus',
+                        items: [
+                            {
+                                label: 'Document',
+                                icon: 'pi pi-file'
+                            },
+                            {
+                                label: 'Image',
+                                icon: 'pi pi-image'
+                            },
+                            {
+                                label: 'Video',
+                                icon: 'pi pi-video'
+                            }
+                        ]
+                    },
+                    {
+                        label: 'Open',
+                        icon: 'pi pi-folder-open'
+                    },
+                    {
+                        label: 'Print',
+                        icon: 'pi pi-print'
+                    }
+                ]
+            },
+            {
+                label: 'Edit',
+                icon: 'pi pi-file-edit',
+                items: [
+                    {
+                        label: 'Copy',
+                        icon: 'pi pi-copy'
+                    },
+                    {
+                        label: 'Delete',
+                        icon: 'pi pi-times'
+                    }
+                ]
+            },
+            {
+                label: 'Search',
+                icon: 'pi pi-search'
+            },
+            {
+                separator: true
+            },
+            {
+                label: 'Share',
+                icon: 'pi pi-share-alt',
+                items: [
+                    {
+                        label: 'Slack',
+                        icon: 'pi pi-slack'
+                    },
+                    {
+                        label: 'Whatsapp',
+                        icon: 'pi pi-whatsapp'
+                    }
+                ]
+            }
+        ]
+    }
+    changeTheme(theme: string, colorScheme: string) {
+       
+        this.theme = theme;
+        this.colorScheme = colorScheme;
+    }
     changeThemeDarkLight(){
-        let theme = localStorage.getItem('theme_admin') || 'lara-light-indigo';//sino existe lo cambiamos a tema por defecto
+        let theme = localStorage.getItem('theme_admin') ||'saga-blue';//sino existe lo cambiamos a tema por defecto
 
-        const newColor = theme.includes('light') ?'dark':'light';
-        const newTheme = theme.includes('light') ? theme.replace('light','dark') : theme.replace('dark','light');
+        const newColor = theme === 'saga-blue' ?'dark':'light';
+        const newTheme = theme === 'saga-blue' ? 'arya-blue' : 'saga-blue';
 
         localStorage.setItem('theme_admin',newTheme);
-        this.icon =newTheme.includes('light') ?'pi pi-sun':'pi pi-moon';
+        this.icon = newTheme === 'saga-blue' ?'pi pi-moon':'pi pi-sun';
         this.changeTheme(newTheme, newColor);
 
     }
@@ -62,10 +139,6 @@ export class AppTopBarComponent {
         return this.layoutService.config().colorScheme;
     }
 
-    changeTheme(theme: string, colorScheme: string) {
-       
-        this.theme = theme;
-        this.colorScheme = colorScheme;
-    }
+    
 
 }

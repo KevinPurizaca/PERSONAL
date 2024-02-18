@@ -17,7 +17,15 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                     { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) }
                 ]
             },
+            {
+                path: '', component: AppLayoutComponent,
+                children: [
+                    { path: 'Masters', loadChildren: () => import('./views/masters/masters.module').then(m => m.MastersModule) },
+
+                ]
+            },
             { path: 'Client', loadChildren: () => import('./views/view-client/view-client.module').then(m => m.ViewClientModule) },
+            { path: 'User', loadChildren: () => import('./views/user/user.module').then(m => m.UserModule) },
 
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
             { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },

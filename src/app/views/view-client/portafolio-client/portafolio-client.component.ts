@@ -52,22 +52,37 @@ export class PortafolioClientComponent implements OnInit {
   constructor(public layoutService: LayoutService, public router: Router) { }
 
   ngOnInit(): void {
-    let theme = localStorage.getItem('theme_client') || 'lara-light-indigo';//sino existe lo cambiamos a tema por defecto
-    this.icon =theme.includes('light')?'pi pi-sun':'pi pi-moon';
+    // let theme = localStorage.getItem('theme_client') || 'lara-light-indigo';//sino existe lo cambiamos a tema por defecto
+    // this.icon =theme.includes('light')?'pi pi-sun':'pi pi-moon';
 
-    const newColor =  theme.includes('light')? theme.replace('light','dark') : theme.replace('dark','light');//light':'dark';
+    // const newColor =  theme.includes('light')? theme.replace('light','dark') : theme.replace('dark','light');//light':'dark';
+    // this.changeTheme(theme, newColor);
+
+    let theme = localStorage.getItem('theme_client') ||'saga-blue';//sino existe lo cambiamos a tema por defecto
+    this.icon = theme === 'saga-blue'?'pi pi-moon':'pi pi-sun';
+
+    const newColor =  theme === 'saga-blue'? 'arya-blue': 'saga-blue';//light':'dark';
     this.changeTheme(theme, newColor);
   }
 
 
   changeThemeDarkLight(){
-    let theme = localStorage.getItem('theme_client') || 'lara-light-indigo';//sino existe lo cambiamos a tema por defecto
+    // let theme = localStorage.getItem('theme_client') || 'lara-light-indigo';//sino existe lo cambiamos a tema por defecto
 
-    const newColor = theme.includes('light') ?'dark':'light';
-    const newTheme = theme.includes('light') ? theme.replace('light','dark') : theme.replace('dark','light');
+    // const newColor = theme.includes('light') ?'dark':'light';
+    // const newTheme = theme.includes('light') ? theme.replace('light','dark') : theme.replace('dark','light');
+
+    // localStorage.setItem('theme_client',newTheme);
+    // this.icon =newTheme.includes('light') ?'pi pi-sun':'pi pi-moon';
+    // this.changeTheme(newTheme, newColor);
+
+    let theme = localStorage.getItem('theme_client') ||'saga-blue';//sino existe lo cambiamos a tema por defecto
+
+    const newColor = theme === 'saga-blue' ?'dark':'light';
+    const newTheme = theme === 'saga-blue' ? 'arya-blue' : 'saga-blue';
 
     localStorage.setItem('theme_client',newTheme);
-    this.icon =newTheme.includes('light') ?'pi pi-sun':'pi pi-moon';
+    this.icon = newTheme === 'saga-blue' ?'pi pi-moon':'pi pi-sun';
     this.changeTheme(newTheme, newColor);
 
 }

@@ -7,11 +7,10 @@ import { IconService } from 'src/app/demo/service/icon.service';
 export class IconsComponent implements OnInit {
 
     icons: any[] = [];
-
     filteredIcons: any[] = [];
-
     selectedIcon: any;
 
+    
     constructor(private iconService: IconService) { }
 
     ngOnInit() {

@@ -25,6 +25,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChartModule } from 'primeng/chart';
 import { StyleClassModule } from 'primeng/styleclass';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuModule } from 'primeng/menu';
 @NgModule({
   declarations: [],
   imports: [
@@ -54,6 +57,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 
     StyleClassModule,
     ChartModule,
+    
   ],
   exports: [
     CommonModule,
@@ -79,8 +83,11 @@ import { StyleClassModule } from 'primeng/styleclass';
     FieldsetModule,
     RadioButtonModule,
     DividerModule,
-    ProgressSpinnerModule    ,
+    ProgressSpinnerModule,
 
+    
+    MenubarModule,
+		TabMenuModule,
 
     StyleClassModule,
     ChartModule,
