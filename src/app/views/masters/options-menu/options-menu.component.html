@@ -2,7 +2,7 @@
 
     <form  [formGroup]="formSearch">
         <div class="p-fluid grid p-formgrid">
-            <div class="col-12 md:col-4">
+            <div class="col-12 md:col-3">
                 <label class="label-filter-text">Titulo</label>
                 <input formControlName="txtTitle" type="text" pInputText class="p-inputtext p-component p-element" />
             </div>
@@ -17,7 +17,12 @@
                 <label class="label-filter-text">Tienen Sub Menu</label>
                 <p-dropdown formControlName="intSubMenu"  [placeholder]="vMessageSelect" 
                 optionLabel="value" optionValue="id"   [emptyMessage]="vMessageEmpty" [options]="lstStatus" ></p-dropdown>
-
+            </div>
+            <div class="col-12 md:col-3">
+              <label class="label-filter-text">Estado</label>                
+              <p-dropdown formControlName="intStatus"  [placeholder]="vMessageSelect" 
+              optionLabel="value" optionValue="id" appendTo="body"
+              [emptyMessage]="vMessageEmpty" [options]="lstState" ></p-dropdown>
             </div>
         </div>
 

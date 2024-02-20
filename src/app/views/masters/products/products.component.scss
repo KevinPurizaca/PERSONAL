@@ -1,0 +1,39 @@
+/* tu-componente.component.scss */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .file-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .section-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+  }
+  
+  .data-table th, .data-table td {
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .data-table th {
+    background-color: #f2f2f2;
+  }
+  

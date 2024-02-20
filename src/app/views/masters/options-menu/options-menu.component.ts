@@ -29,6 +29,8 @@ export class OptionsMenuComponent implements OnInit{
   lstModules:any[]=[];
 
   lstStatus:ComboModel[]=[];
+  lstState:ComboModel[]=[]//Form Estados de tabla activo,inactivo ;
+
   lstIcons:ComboModel[]=[];
   icons: any[] = [];
 
@@ -50,15 +52,6 @@ export class OptionsMenuComponent implements OnInit{
   titleEditRegisterModule:string = '';
 
   lsModuleDto! :any;
-
-   
-
-  // options: ScrollerOptions = {
-  //     delay: 100,
-  //     showLoader: true,
-  //     lazy: true,
-  // };
-
 
   constructor(
     fs:FormBuilder,

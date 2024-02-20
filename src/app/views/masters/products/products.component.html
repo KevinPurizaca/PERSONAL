@@ -1,1 +1,26 @@
-<p>products works!</p>
+<!-- tu-componente.component.html -->
+
+<div class="container">
+    <input type="file" (change)="onFileSelected($event)" class="file-input">
+  </div>
+  
+  <div *ngIf="resultados.length > 0" class="container">
+    <h2 class="section-title">Resultados:</h2>
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let resultado of resultados">
+            <td>{{ resultado.nombre }}</td>
+            <td>{{ resultado.cantidad }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

@@ -1,1 +1,35 @@
-<p>auxiliary-tables works!</p>
+<p-panel header="Busqueda de Tablas Auxiliares">
+
+    <form [formGroup]="formSearch">
+        <div class="grid p-formgrid p-fluid">
+
+            <div class="col-12 md:col-3">
+                <label class="label-filter-text">Descripcion</label>
+                <input formControlName="txtDescription" type="text" pInputText class="p-inputtext p-component p-element" />
+            </div>
+            <div class="col-12 md:col-3">
+                <label class="label-filter-text">Estado</label>                
+                <p-dropdown formControlName="intStatus"  [placeholder]="vMessageSelect" 
+                optionLabel="value" optionValue="id" appendTo="body"
+                [emptyMessage]="vMessageEmpty" [options]="lstState" ></p-dropdown>
+              </div>
+        </div>
+
+        <div class="flex flex-wrap sm:flex-row">
+            <div class="sm:mr-auto mb-3 mr-3">
+              <button pButton label="Agregar Tabla" type="button" icon="pi pi-plus" class="p-button-help" ></button>
+            </div>
+            <div class="mb-3 mr-3">
+              <button pButton label="Buscar" icon="pi pi-search" type="submit" class="p-button-outlined p-button-primary"></button>
+            </div>
+            <div class="">
+              <button pButton (click)="formSearch.reset()" label="Limpiar" type="button" icon="pi pi-trash" class="p-button-outlined p-button-secondary"></button>
+            </div>
+          </div>
+    </form>
+
+</p-panel>
+<br>
+<p-panel header="Resultado de Tablas Auxiliares">
+
+</p-panel>

@@ -23,7 +23,6 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
-                // label: 'Masters',
                 items: [
                     {
                         label: 'Masters',
