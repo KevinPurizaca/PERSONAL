@@ -61,7 +61,8 @@ export class OptionsMenuComponent implements OnInit{
     this.formSearch = fs.group({
       txtTitle:[''],
       intVisible:[-1],
-      intSubMenu : [-1]
+      intSubMenu : [-1],
+      intState: [-1]
     });
 
     this.formRegisterEdit = fre.group({
@@ -146,32 +147,4 @@ export class OptionsMenuComponent implements OnInit{
 
   }
 
-
-
-
-
-  /*
-
-    Modulo
-
-    Titulo
-    Url
-    icono
-    orden
-    Visible
-    Tiene submenu
-
-
-
-
-
-    Opcion
-
-    Titulo
-    Descripcion
-    Url
-    icono
-    orden
-    Visible
- */
 }

@@ -1,6 +1,5 @@
 import { environment } from "src/environments/environment"
 
-const URLBASE = environment.UrlBase;
 
 export const Endpoints = {
   LOGIN: '/seguridad/login',
