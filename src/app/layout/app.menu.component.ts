@@ -54,6 +54,11 @@ export class AppMenuComponent implements OnInit {
                                 routerLink: ['/Masters/Categorys']
                             },
                             {
+                                label: 'Brands',
+                                icon: 'pi pi-table',
+                                routerLink: ['/Masters/Brands']
+                            },
+                            {
                                 label: 'Options Menu',
                                 icon: 'pi pi-wrench',
                                 routerLink: ['/Masters/Options-Menu']

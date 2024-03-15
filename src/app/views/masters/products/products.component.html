@@ -1,0 +1,256 @@
+<p-panel header="Busqueda de Productos">
+   <form [formGroup]="formSearch">
+        <div class="grid p-formgrid p-fluid">
+            <div class="col12 md:col-4">
+                <label class="label-filter-text">Nombre</label>
+                <input formControlName="txtName" type="text" pInputText class="p-inputtext p-component p-element" />
+            </div>
+
+            <div class="col12 md:col-4">
+                <label class="label-filter-text">Descripción </label>
+                <input formControlName="txtDescription" type="text" pInputText class="p-inputtext p-component p-element" />
+            </div>
+
+            <div class="col12 md:col-2">
+                <label class="label-filter-text">Categoria</label>                
+                <p-dropdown formControlName="intCategory"  [placeholder]="vMessageSelect" 
+                optionLabel="value" optionValue="id" appendTo="body"
+                [emptyMessage]="vMessageEmpty" [options]="lstCategory" ></p-dropdown>
+            </div>
+
+            <div class="col12 md:col-2">
+                <label class="label-filter-text">Sub Categoria</label>                
+                <p-dropdown formControlName="intSubCategory"  [placeholder]="vMessageSelect" 
+                optionLabel="value" optionValue="id" appendTo="body"
+                emptyMessage="Seleccione una Categoria" [options]="lstSubCategory" ></p-dropdown>
+            </div>
+        
+
+            <div class="col12 md:col-2">
+                <label class="label-filter-text">Stock</label>                
+                <p-dropdown formControlName="intStock"  [placeholder]="vMessageSelect" 
+                optionLabel="value" optionValue="id" appendTo="body"
+                [emptyMessage]="vMessageEmpty"  [options]="lstStock" ></p-dropdown>
+            </div>
+
+            <!-- <div class="col12 md:col-2">
+                <label class="label-filter-text">Precio </label>
+                <input formControlName="intPrice" type="text" pInputText class="p-inputtext p-component p-element" />
+            </div> -->
+
+            <div class="col12 md:col-2">
+                <label class="label-filter-text">Estrellas</label>                
+                <p-dropdown formControlName="intStars"  [placeholder]="vMessageSelect" 
+                optionLabel="value" optionValue="id" appendTo="body"
+                [emptyMessage]="vMessageEmpty"  [options]="lstStars" ></p-dropdown>
+            </div>
+
+            <div class="col12 md:col-4">
+                <label class="label-filter-text">Proveedor</label>                
+                <p-dropdown formControlName="intSupplier"  [placeholder]="vMessageSelect" 
+                optionLabel="value" optionValue="id" appendTo="body"
+                [emptyMessage]="vMessageEmpty"  [options]="lstSupplier" ></p-dropdown>
+            </div>
+
+            <div class="col12 md:col-2">
+                <label class="label-filter-text">Estado</label>                
+                <p-dropdown formControlName="intState"  [placeholder]="vMessageSelect" 
+                optionLabel="value" optionValue="id" appendTo="body"
+                [emptyMessage]="vMessageEmpty"  [options]="lstState" ></p-dropdown>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap sm:flex-row">
+            <div class="sm:mr-auto mb-3 mr-3">
+              <button pButton label="Agregar Producto"  (click)="vmEditRegisterProduct = true;" type="button" icon="pi pi-plus" class="p-button-help" ></button>
+              <button pButton label="Importar Productos" type="button" icon="pi pi-upload" class="p-button-primary ml-3" ></button>
+            </div>
+            <div class="mb-3 mr-3">
+                <button pButton label="Exportar" icon="pi pi-file-excel" type="submit" class="p-button-outlined p-button-success"></button>
+              </div>
+            <div class="mb-3 mr-3">
+              <button pButton label="Buscar" icon="pi pi-search" type="submit" class="p-button-outlined p-button-primary"></button>
+            </div>
+            <div class="">
+              <button pButton (click)="formSearch.reset()" label="Limpiar" type="button" icon="pi pi-trash" class="p-button-outlined p-button-secondary"></button>
+            </div>
+          </div>
+   </form>
+</p-panel>
+
+<br>
+
+<p-panel header="Resultados de Productos" [toggleable]="false" class="line-height-3">
+    <p-table [value]="lstProducts" scrollDirection="both" [scrollable]="true" scrollHeight="400px" styleClass="mt-3" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="min-width:150px">Id</th>
+            <th style="min-width:150px">Nombres</th>
+            <th style="min-width:150px">Descripcion</th>
+
+            <th style="min-width:150px">Categoria</th>
+            <th style="min-width:150px">Sub Categoria</th>
+            <th style="min-width:150px">Marca</th>
+
+            <th style="min-width:150px">Precio</th>
+            <th style="min-width:150px">Stock</th>
+            <th style="min-width:150px">Calificacion</th>
+
+            <th style="min-width:150px">Proveedor</th>
+            <th style="min-width:150px">Estado</th>    
+            <th style="min-width:200px" pFrozenColumn alignFrozen="right">Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-customer>
+          <tr>
+            <td style="width:150px" pFrozenColumn class="font-bold">{{customer.name}}</td>
+            <td style="width:150px" alignFrozen="left" pFrozenColumn [frozen]="idFrozen" [ngClass]="{'font-bold': idFrozen}">{{customer.id}}</td>
+            <td style="width:150px">{{customer.country.name}}</td>
+
+            <td style="width:150px">{{customer.date}}</td>
+            <td style="width:150px">{{customer.company}}</td>
+            <td style="width:150px">{{customer.status}}</td>
+
+            <td style="width:150px">{{customer.activity}}</td>
+            <td style="width:150px">{{customer.representative.name}}</td>
+            <td style="width:150px">{{customer.date}}</td>
+
+            <td style="width:150px">{{customer.company}}</td>
+            <td style="width:150px">{{customer.status}}</td>
+            <td style="width:150px" pFrozenColumn  class="font-bold" alignFrozen="right">{{customer.representative.name}}  </td>
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="7">No se encontró Información.</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="loadingbody">
+          <tr>
+            <td colspan="7">
+              Cargando información. Espere por favor.
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-paginator [rows]="req.itotal_pagina" [totalRecords]="totalRecord" [rowsPerPageOptions]="rowsOptions"
+      [showCurrentPageReport]="true" [first]="first"
+      currentPageReportTemplate="Total : {totalRecords} registros"></p-paginator>
+</p-panel>
+
+
+<p-dialog [(visible)]="vmEditRegisterProduct" [draggable]="false" [style]="{width: '600px',height:'575px'}"  [closable]="false" 
+          [header]="titleEditRegisterProduct" [modal]="true" >
+  <ng-template pTemplate="content">
+    <br>
+   <form [formGroup]="formRegisterEdit">
+    <div class="grid p-formgrid p-fluid ">
+      
+      <div class="col-12 md:col-6">
+        <label class="label-filter-text">Nombre</label>
+        <input formControlName="txtName" type="text" pInputText class="p-inputtext p-component p-element"     />
+
+          <small  *ngIf="formRegisterEdit.controls['txtName'].invalid && formRegisterEdit.controls['txtName'].touched"
+          class="text-red-600"> Ingrese Nombre</small>
+          <small *ngIf="formRegisterEdit.get('txtName')?.hasError('pattern')"
+          class="text-red-600">Ingrese solo Letras</small>
+      </div>
+
+      <div class="col-12 md:col-6">
+        <label class="label-filter-text">Descripcion</label>
+        <input formControlName="txtDescription" type="text" pInputText class="p-inputtext p-component p-element"     />
+
+          <small  *ngIf="formRegisterEdit.controls['txtDescription'].invalid && formRegisterEdit.controls['txtDescription'].touched"
+          class="text-red-600"> Ingrese Descripcion</small>
+          <small *ngIf="formRegisterEdit.get('txtDescription')?.hasError('pattern')"
+          class="text-red-600">Ingrese solo Letras</small>
+      </div>
+      
+
+
+      <div class="col-12 md:col-4">
+        <label class="label-filter-text">Categoria</label>                
+        <p-dropdown formControlName="intCategory" required [placeholder]="vMessageSelect" optionLabel="value"
+         optionValue="id" [emptyMessage]="vMessageEmpty" [options]="lstCategory" appendTo="body"></p-dropdown>
+
+         <small  *ngIf="formRegisterEdit.controls['intCategory'].invalid && formRegisterEdit.controls['intCategory'].touched"
+        class="text-red-600"> Seleccion Categoria.</small>
+      </div>
+
+
+      <div class="col-12 md:col-4">
+        <label class="label-filter-text">Sub Categoria</label>                
+        <p-dropdown formControlName="intSubCategory" [options]="lstStatus" optionLabel="value" optionValue="id"
+        [emptyMessage]="vMessageEmpty" [placeholder]="vMessageSelect" required appendTo="body"></p-dropdown>
+
+        <small  *ngIf="formRegisterEdit.controls['intSubCategory'].invalid && formRegisterEdit.controls['intSubCategory'].touched"
+        class="text-red-600"> Seleccion Sub Categoria.</small>
+      </div>
+
+      <div class="col-12 md:col-4">
+        <label class="label-filter-text">Marca</label>                
+        <p-dropdown formControlName="intBrand" [options]="lstStatus" optionLabel="value" optionValue="id"
+        [emptyMessage]="vMessageEmpty" [placeholder]="vMessageSelect" required appendTo="body"></p-dropdown>
+
+        <small  *ngIf="formRegisterEdit.controls['intBrand'].invalid && formRegisterEdit.controls['intBrand'].touched"
+        class="text-red-600"> Seleccion Marca.</small>
+      </div>
+
+
+      <div class="col-12 md:col-2">
+        <label class="label-filter-text">Stock</label>                
+        <p-inputNumber formControlName="intStock" inputId="withoutgrouping" [useGrouping]="false" 
+        [maxlength]="9" autocomplete="off"></p-inputNumber>   
+
+        <small  *ngIf="formRegisterEdit.controls['intStock'].invalid && formRegisterEdit.controls['intStock'].touched"
+        class="text-red-600"> Ingrese Stock</small>
+      </div>
+
+      <div class="col-12 md:col-3">
+        <label class="label-filter-text">Precio</label>
+        <p-inputNumber formControlName="intPrice"  inputId="locale-user" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+        <small  *ngIf="formRegisterEdit.controls['intPrice'].invalid && formRegisterEdit.controls['intPrice'].touched"
+        class="text-red-600"> Ingrese  Precio.</small>        
+      </div>
+      
+      <div class="col-12 md:col-4">
+        <label class="label-filter-text">Proveedor</label>                
+        <p-dropdown formControlName="intSupplier" [options]="lstStatus" optionLabel="value" optionValue="id"
+        [emptyMessage]="vMessageEmpty" [placeholder]="vMessageSelect" required appendTo="body"></p-dropdown>
+
+        <small  *ngIf="formRegisterEdit.controls['intSupplier'].invalid && formRegisterEdit.controls['intSupplier'].touched"
+        class="text-red-600"> Seleccion Proveedor.</small>
+      </div>
+
+      <div class="col-12 md:col-3">
+        <label class="label-filter-text">Estado</label>                
+        <p-dropdown formControlName="intState" [options]="lstStatus" optionLabel="value" optionValue="id"
+        [emptyMessage]="vMessageEmpty" [placeholder]="vMessageSelect" required appendTo="body"></p-dropdown>
+
+        <small  *ngIf="formRegisterEdit.controls['intState'].invalid && formRegisterEdit.controls['intState'].touched"
+        class="text-red-600"> Seleccion Proveedor.</small>
+      </div>
+
+
+      <div class="col-12 md:col-12">
+        <p-fileUpload  [multiple]="true" accept="image/*" [fileLimit]="3" maxFileSize="1000000"
+                        [showUploadButton]="false" [showCancelButton]="false" [previewWidth]="100"
+                        chooseLabel="Seleccionar Imagenes">
+            <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                </ul>
+            </ng-template>
+        </p-fileUpload>
+    </div>
+
+    </div>   
+   </form>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cerrar" icon="pi pi-times" class="p-button-text" (click)="vmEditRegisterProduct = false;"></button>
+    <button pButton pRipple label="Guardar" icon="pi pi-save" class="p-button-text" [loading]="loadingSave" (click)="saveProduct()" ></button>
+  </ng-template>
+</p-dialog>

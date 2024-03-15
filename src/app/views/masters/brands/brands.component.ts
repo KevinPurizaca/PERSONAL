@@ -1,26 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MESSAGE_EMPTY, MESSAGE_SELECT } from 'src/app/core/config/mensajes';
 import { ROWS_DEFAULT, ROWS_OPTIONS } from 'src/app/core/config/options';
 import { ComboModel } from 'src/app/core/util/combo';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
-  selector: 'app-categorys',
+  selector: 'app-brands',
   standalone: true,
   imports: [
     SharedModule
   ],
-  templateUrl: './categorys.component.html',
-  styleUrl: './categorys.component.scss'
+  templateUrl: './brands.component.html',
+  styleUrl: './brands.component.scss'
 })
-export class CategorysComponent implements OnInit{
+export class BrandsComponent implements OnInit{
 
   formSearch:FormGroup;
-  formRegisterEdit:FormGroup;
 
-
-  lstCategorys:any[]=[];
+  lstBrands:any[]=[];
   lstState:ComboModel[]=[];
 
   totalRecord:number = 0;
@@ -31,8 +29,8 @@ export class CategorysComponent implements OnInit{
   vMessageEmpty : string=MESSAGE_EMPTY;
   vMessageSelect : string=MESSAGE_SELECT;
 
-  titleEditRegisterCategory:string ='';
-  vmEditRegisterCategory:boolean = false;
+  titleEditRegisterBrand:string ='';
+  vmEditRegisterBrand:boolean = false;
 
   
   uploadedFiles: any[] = [];
@@ -45,26 +43,18 @@ export class CategorysComponent implements OnInit{
   
   
 constructor(
-  fs:FormBuilder,
-  fre:FormBuilder
+  fs:FormBuilder
 ){
   this.formSearch = fs.group({
     txtName:[''],
-    intState:[-1]
+    intStatus:[-1]
   })
-
-  this.formRegisterEdit = fre.group({
-    txtName:[''],
-    intState:[-1]
-  });
 }
 
   ngOnInit(): void {
     
   }
 
-  saveCategory():void{
 
-  }
 
 }

@@ -9,6 +9,7 @@ const routes: Routes = [
   {path: 'Profiles',loadChildren: () =>        import('./profiles/profiles.module').then(m => m.ProfilesModule)},
   {path: 'Users',loadChildren: () =>           import('./users/users.module').then(m => m.UsersModule)},
   {path: 'Options-Menu',loadChildren: () =>           import('./options-menu/options-menu.module').then(m => m.OptionsMenuModule)},
+  {path: 'Brands',loadChildren: () =>           import('./brands/brands.module').then(m => m.BrandsModule)},
 
 ]
 

@@ -12,22 +12,18 @@ import { PanelModule } from 'primeng/panel';
 import { DialogModule } from 'primeng/dialog';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PaginatorModule } from 'primeng/paginator';
-import { PasswordModule } from 'primeng/password';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CardModule} from 'primeng/card';
-import { SelectButtonModule } from 'primeng/selectbutton';
-import { FieldsetModule } from 'primeng/fieldset';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { DividerModule } from 'primeng/divider';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChartModule } from 'primeng/chart';
 import { StyleClassModule } from 'primeng/styleclass';
-import { TabMenuModule } from 'primeng/tabmenu';
-import { MenubarModule } from 'primeng/menubar';
-import { MenuModule } from 'primeng/menu';
+import { FileUploadModule } from 'primeng/fileupload';
+
+
+import { DividerModule } from 'primeng/divider';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -45,19 +41,13 @@ import { MenuModule } from 'primeng/menu';
     ConfirmPopupModule,
     CheckboxModule,
     PaginatorModule,
-    PasswordModule,
     AutoCompleteModule,
     InputTextareaModule,
     CardModule,
-    SelectButtonModule,
-    FieldsetModule,
-    RadioButtonModule,
-    DividerModule,
-    ProgressSpinnerModule,   
-
+    FileUploadModule,
     StyleClassModule,
-    ChartModule,
-    
+    ChartModule,    
+    DividerModule
   ],
   exports: [
     CommonModule,
@@ -73,24 +63,15 @@ import { MenuModule } from 'primeng/menu';
     DialogModule,
     ConfirmPopupModule,
     PaginatorModule,
-    PasswordModule,
     CheckboxModule,
     AutoCompleteModule,
     CalendarModule,
     InputTextareaModule,
     CardModule,
-    SelectButtonModule,
-    FieldsetModule,
-    RadioButtonModule,
-    DividerModule,
-    ProgressSpinnerModule,
-
-    
-    MenubarModule,
-		TabMenuModule,
-
+    FileUploadModule,
     StyleClassModule,
     ChartModule,
+    DividerModule
   ],
   providers: []
 })

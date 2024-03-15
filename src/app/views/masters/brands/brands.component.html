@@ -1,4 +1,4 @@
-<p-panel header="Busqueda de Categorias"  [toggleable]="false" class="line-height-3"> 
+<p-panel header="Busqueda de Marcas"  [toggleable]="false" class="line-height-3"> 
     <form [formGroup]="formSearch">
         <div class="grid p-formgrid p-fluid">
 
@@ -16,8 +16,8 @@
         </div>
         <div class="flex flex-wrap sm:flex-row">
             <div class="sm:mr-auto mb-3 mr-3">
-              <button pButton label="Agregar Categoria"  (click)="vmEditRegisterCategory = true;" type="button" icon="pi pi-plus" class="p-button-help" ></button>
-              <button pButton label="Importar Categoria" type="button" icon="pi pi-upload" class="p-button-primary ml-3" ></button>
+              <button pButton label="Agregar Marcas"  (click)="vmEditRegisterBrand = true;" type="button" icon="pi pi-plus" class="p-button-help" ></button>
+              <button pButton label="Importar Marcas" type="button" icon="pi pi-upload" class="p-button-primary ml-3" ></button>
             </div>
             <div class="mb-3 mr-3">
                 <button pButton label="Exportar" icon="pi pi-file-excel" type="submit" class="p-button-outlined p-button-success"></button>
@@ -34,8 +34,8 @@
 
 <br>
 
-<p-panel header="Resultados de Categorias"  [toggleable]="false" class="line-height-3">
-    <p-table [value]="lstCategorys" scrollDirection="both" [scrollable]="true" scrollHeight="400px" styleClass="mt-3" responsiveLayout="scroll">
+<p-panel header="Resultados de Marcas"  [toggleable]="false" class="line-height-3">
+    <p-table [value]="lstBrands" scrollDirection="both" [scrollable]="true" scrollHeight="400px" styleClass="mt-3" responsiveLayout="scroll">
         <ng-template pTemplate="header">
           <tr>
             <th style="min-width:150px">Id</th>
@@ -70,59 +70,3 @@
       [showCurrentPageReport]="true" [first]="first"
       currentPageReportTemplate="Total : {totalRecords} registros"></p-paginator>
 </p-panel>
-
-
-
-
-
-
-
-<p-dialog [(visible)]="vmEditRegisterCategory" [draggable]="false" [style]="{width: '600px',height:'575px'}"  [closable]="false" 
-          [header]="titleEditRegisterCategory" [modal]="true" >
-  <ng-template pTemplate="content">
-    <br>
-   <form [formGroup]="formRegisterEdit">
-    <div class="grid p-formgrid p-fluid ">
-      
-      <div class="col-12 md:col-6">
-        <label class="label-filter-text">Nombre</label>
-        <input formControlName="txtName" type="text" pInputText class="p-inputtext p-component p-element"     />
-
-          <small  *ngIf="formRegisterEdit.controls['txtName'].invalid && formRegisterEdit.controls['txtName'].touched"
-          class="text-red-600"> Ingrese Nombre</small>
-          <small *ngIf="formRegisterEdit.get('txtName')?.hasError('pattern')"
-          class="text-red-600">Ingrese solo Letras</small>
-      </div>
-
-
-      <div class="col-12 md:col-3">
-        <label class="label-filter-text">Estado</label>                
-        <p-dropdown formControlName="intState" [options]="lstStatus" optionLabel="value" optionValue="id"
-        [emptyMessage]="vMessageEmpty" [placeholder]="vMessageSelect" required appendTo="body"></p-dropdown>
-
-        <small  *ngIf="formRegisterEdit.controls['intState'].invalid && formRegisterEdit.controls['intState'].touched"
-        class="text-red-600"> Seleccion Estado.</small>
-      </div>
-
-
-      <div class="col-12 md:col-12">
-        <p-fileUpload  [multiple]="false" accept="image/*" [fileLimit]="1" maxFileSize="1000000"
-                        [showUploadButton]="false" [showCancelButton]="false" [previewWidth]="100"
-                        chooseLabel="Seleccionar Imagenes">
-            <ng-template pTemplate="content">
-                <ul *ngIf="uploadedFiles.length">
-                    <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
-                </ul>
-            </ng-template>
-        </p-fileUpload>
-    </div>
-
-    </div>   
-   </form>
-  </ng-template>
-
-  <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cerrar" icon="pi pi-times" class="p-button-text" (click)="vmEditRegisterCategory = false;"></button>
-    <button pButton pRipple label="Guardar" icon="pi pi-save" class="p-button-text" [loading]="loadingSave" (click)="saveCategory()" ></button>
-  </ng-template>
-</p-dialog>
