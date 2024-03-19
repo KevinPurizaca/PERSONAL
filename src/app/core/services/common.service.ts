@@ -27,23 +27,23 @@ export class CommonService {
     this.messageService.add({
       key: 'tst',
       severity: 'error',
-      summary: 'Error Message',
-      detail: err.Message ,
+      summary: err.message ,//'Error Message',
+      detail:  err.innerException ,
       closable:false,
       life: this.tiempoVidaNotificacion,
     });
   }
 
-  public HanddleErrorMessage2(msg: any) {
-    this.messageService.add({
-      key: 'tst',
-      severity: 'error',
-      summary: 'Error Message',
-      detail: msg,
-      closable:false,
-      life: this.tiempoVidaNotificacion,
-    });
-  }
+  // public HanddleErrorMessage2(msg: any) {
+  //   this.messageService.add({
+  //     key: 'tst',
+  //     severity: 'error',
+  //     summary: 'Error Message',
+  //     detail: msg,
+  //     closable:false,
+  //     life: this.tiempoVidaNotificacion,
+  //   });
+  // }
   public HanddleInfoMessage(msg: any) {
     this.messageService.add({
       key: 'tst',
@@ -55,16 +55,16 @@ export class CommonService {
     });
   }
 
-  public HanddleInfoMessage2(res: any) {
-    this.messageService.add({
-      key: 'tst',
-      severity: 'info',
-      summary: 'Info',
-      detail: res.Message,
-      closable:false,
-      life: this.tiempoVidaNotificacion,
-    });
-  }
+  // public HanddleInfoMessage2(res: any) {
+  //   this.messageService.add({
+  //     key: 'tst',
+  //     severity: 'info',
+  //     summary: 'Info',
+  //     detail: res.Message,
+  //     closable:false,
+  //     life: this.tiempoVidaNotificacion,
+  //   });
+  // }
 
   public CustomMessage(msg: any, tipo = 'error') {
     this.messageService.add({

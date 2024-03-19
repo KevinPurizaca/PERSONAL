@@ -1,3 +1,7 @@
+<p-toast key="tst" [baseZIndex]="99999"></p-toast>
+<p-confirmPopup key="deleteDetalle"></p-confirmPopup>
+
+
 <p-panel header="Busqueda de Tablas Auxiliares">
 
     <form [formGroup]="formSearch">
@@ -9,7 +13,7 @@
             </div>
             <div class="col-12 md:col-3">
                 <label class="label-filter-text">Estado</label>                
-                <p-dropdown formControlName="intStatus"  [placeholder]="vMessageSelect" 
+                <p-dropdown formControlName="intState"  [placeholder]="vMessageSelect" 
                 optionLabel="value" optionValue="id" appendTo="body"
                 [emptyMessage]="vMessageEmpty" [options]="lstState" ></p-dropdown>
               </div>
@@ -17,7 +21,7 @@
 
         <div class="flex flex-wrap sm:flex-row">
             <div class="sm:mr-auto mb-3 mr-3">
-              <button pButton label="Agregar Tabla" type="button" icon="pi pi-plus" class="p-button-help" ></button>
+              <button pButton label="Agregar Tabla" type="button" icon="pi pi-plus" class="p-button-help" (click)="viewModal(1,null)"></button>
             </div>
             <div class="mb-3 mr-3">
               <button pButton label="Buscar" icon="pi pi-search" type="submit" class="p-button-outlined p-button-primary"></button>
@@ -32,6 +36,91 @@
 
 <br>
 
-<p-panel header="Resultado de Tablas Auxiliares">
+<p-panel header="Resultado de Tablas Auxiliares" [toggleable]="false" class="line-height-3">
+  <p-table [value]="lstTableHeadboard" scrollDirection="both" [scrollable]="true" scrollHeight="400px" 
+  styleClass="mt-3" responsiveLayout="scroll"  styleClass="p-datatable-gridlines">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="min-width:150px">Id</th>
+        <th style="min-width:150px">Descripción</th>
+        <th style="min-width:150px">Estado</th>
 
+        <th style="min-width:200px" pFrozenColumn alignFrozen="right">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+      <tr>
+        <td style="width:200px" class="font-bold">{{data.vcode}}</td>
+        <td style="width:200px">{{data.vdescription}}</td>
+        <td style="width:200px">{{data.vstate_record}}</td>
+        <td style="width:200px" pFrozenColumn alignFrozen="right">
+          <button pButton icon="pi pi-trash" class="text-red-500 p-button-text"
+          (click)="deleteTableHeadboard($event,data)" pTooltip="Eliminar" tooltipPosition="bottom"></button>
+
+          <button pButton icon="pi pi-pencil" class="text-green-500 p-button-text"
+          (click)="viewModal(2,data)" pTooltip="Eliminar" tooltipPosition="bottom"></button>
+
+          <button pButton icon="pi pi-eye" class="text-blue-500 p-button-text"
+           pTooltip="Eliminar" tooltipPosition="bottom"></button>
+        </td>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">No se encontró Información.</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="loadingbody">
+      <tr>
+        <td colspan="7">
+          Cargando información. Espere por favor.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-paginator [rows]="req.ilimit" [totalRecords]="totalRecord" [rowsPerPageOptions]="rowsOptions"
+  [showCurrentPageReport]="true" [first]="first"  (onPageChange)="changePageTableHeadboard($event)"
+  currentPageReportTemplate="Total : {totalRecords} registros"></p-paginator>
 </p-panel>
+
+
+
+
+<p-dialog [(visible)]="vmEditRegisterTableHeadboard" [draggable]="false" [style]="{width: '340px',height:'360px'}"  
+          [closable]="false" [header]="titleEditRegisterTableHeadboard" [modal]="true" class="p-fluid">
+  <ng-template pTemplate="content">
+    <br>
+   <form [formGroup]="formRegisterEditTableHeadboard">
+    <div class="p-fluid p-formgrid grid">
+      
+      <div class="col-12 md:col-12">
+        <label class="label-filter-text">Descripción</label>
+        <input formControlName="txtDescription"  [(ngModel)]="lsTableHeadboardDto.vdescription" type="text" pInputText class="p-inputtext p-component p-element"     />
+
+          <small  *ngIf="formRegisterEditTableHeadboard.controls['txtDescription'].invalid && formRegisterEditTableHeadboard.controls['txtDescription'].touched"
+          class="text-red-600"> Ingrese Descripción</small>
+          <small *ngIf="formRegisterEditTableHeadboard.get('txtDescription')?.hasError('pattern')"
+          class="text-red-600">Ingrese solo Letras</small>
+      </div>
+
+      
+      <div class="col-12 md:col-12">
+        <label class="label-filter-text">Estado</label>                
+        <p-dropdown formControlName="intState" [options]="lstStatus" optionLabel="value" optionValue="id"
+        [emptyMessage]="vMMessageEmpty" [placeholder]="vMessageSelect" appendTo="body"
+        [(ngModel)]="lsTableHeadboardDto.istate_record"></p-dropdown>
+
+        <small  *ngIf="formRegisterEditTableHeadboard.controls['intState'].invalid && formRegisterEditTableHeadboard.controls['intState'].touched"
+        class="text-red-600"> Seleccion Estado.</small>
+      </div>
+
+    </div>   
+   </form>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cerrar" icon="pi pi-times" class="p-button-text" (click)="vmEditRegisterTableHeadboard = false;"></button>
+    <button pButton pRipple label="Guardar" icon="pi pi-save" class="p-button-text" [loading]="loadingSave" (click)="saveTableHeadboard()" ></button>
+  </ng-template>
+</p-dialog>

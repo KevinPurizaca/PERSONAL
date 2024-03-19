@@ -4,9 +4,6 @@ import { environment } from 'src/environments/environment';
 import { iif, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
-// import { CommonService } from 'src/app/views/services/common.service';
-import { CommonService } from '../../views/services/common.service';
 
 @Injectable()
 export class HttpCoreService {
@@ -53,7 +50,6 @@ export class HttpCoreService {
     //const name_file:string = nombreArchivo+`_${moment().format('YYYYMMDD_HHMMSS')}.xlsx`;
     let link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.download = nombreArchivo+`_${moment().format('YYYYMMDD_HHMMSS')}.xlsx`;//;name_file;
     link.click();
   }
 
@@ -142,7 +138,6 @@ export class HttpCoreService {
     const blob = await response.blob();
     let link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.download = nombreArchivo+`_${moment().format('YYYYMMDD_HHMMSS')}.xlsx`;//;name_file;
     link.click();
   }
 

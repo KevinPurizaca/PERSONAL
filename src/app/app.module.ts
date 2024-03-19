@@ -12,6 +12,8 @@ import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import { SharedModule } from './shared/shared.module';
+import { HttpCoreService } from './core/services/httpCore.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
@@ -25,7 +27,11 @@ import { SharedModule } from './shared/shared.module';
         NodeService,
         PhotoService,
         ProductService,
-        SharedModule
+        SharedModule,
+        
+        HttpCoreService,
+        MessageService,
+        ConfirmationService
     ],
     bootstrap: [AppComponent],
 })

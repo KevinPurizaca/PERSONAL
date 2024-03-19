@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MESSAGE_EMPTY, MESSAGE_SELECT } from 'src/app/core/config/mensajes';
 import { PATTERNS, ROWS_DEFAULT, ROWS_OPTIONS } from 'src/app/core/config/options';
+import { HttpCoreService } from 'src/app/core/services/httpCore.service';
 import { ComboModel } from 'src/app/core/util/combo';
 import { SharedModule } from 'src/app/shared/shared.module';
 @Component({
@@ -41,15 +42,27 @@ export class UsersComponent implements OnInit{
   rowsDefault: number = ROWS_DEFAULT;
   rowsOptions: any[] = ROWS_OPTIONS;
 
-  req ={
-    
-    inumero_pagina: 0,
-    itotal_pagina: ROWS_DEFAULT
+  req ={ 
+    iid_user: -1,
+    vcode: "",
+    vfirst_name: "",
+    vlast_name: "",
+    vemail: "",
+    inumber_document: -1,
+    itype_document: -1,
+    iphone: -1,
+    vaddress: "",
+    iid_department: -1,
+    iid_profile: -1,
+    istate_record: -1,
+    iindex: 0,
+    ilimit: ROWS_DEFAULT,
   }
 
   constructor(
     fs:FormBuilder,
-    fre:FormBuilder
+    fre:FormBuilder,
+    private httpCoreService: HttpCoreService,
 
     )
   {
@@ -80,7 +93,7 @@ export class UsersComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    
+    this.loadData(this.req)
   }
 
 
@@ -113,5 +126,15 @@ export class UsersComponent implements OnInit{
 
     if (this.formRegisterEdit.valid) {
   }
+  }
+
+  loadData(req:any){
+    this.httpCoreService.post(req,'/Masters/Users/GetListUsers').subscribe(res =>{
+
+      if(res.isSuccess){
+        this.lstUsers = res.data;       
+        this.totalRecord = res.iTotal_record;
+      }
+    });
   }
 }
