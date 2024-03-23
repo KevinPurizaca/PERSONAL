@@ -25,41 +25,41 @@ export class AppMenuComponent implements OnInit {
             {
                 items: [
                     {
-                        label: 'Masters',
+                        label: 'Maestras',//'Masters',
                         icon: 'pi pi-briefcase',
                         items: [
                             {
-                                label: 'Users',
+                                label: 'Usuarios',//'Users',
                                 icon: 'pi pi-user',
                                 routerLink: ['/Masters/Users']
                             },
                             {
-                                label: 'Profiles',
+                                label: 'Perfiles',//'Profiles',
                                 icon: 'pi pi-building',
                                 routerLink: ['/Masters/Profiles']
                             },
                             {
-                                label: 'Axiliary-Tables',
+                                label: 'Tablas Auxiliares',//'Axiliary-Tables',
                                 icon: 'pi pi-table',
                                 routerLink: ['/Masters/Axiliary-Tables']
                             },
                             {
-                                label: 'Products',
+                                label: 'Productos',//'Products',
                                 icon: 'pi pi-th-large',
                                 routerLink: ['/Masters/Products']
                             },
                             {
-                                label: 'Categorys',
+                                label: 'Categorias',//'Categorys',
                                 icon: 'pi pi-slack',
                                 routerLink: ['/Masters/Categorys']
                             },
                             {
-                                label: 'Brands',
+                                label: 'Marcas',//'Brands',
                                 icon: 'pi pi-table',
                                 routerLink: ['/Masters/Brands']
                             },
                             {
-                                label: 'Options Menu',
+                                label: 'Opciones Menu',//'Options Menu',
                                 icon: 'pi pi-wrench',
                                 routerLink: ['/Masters/Options-Menu']
                             }
@@ -194,3 +194,262 @@ export class AppMenuComponent implements OnInit {
         ];
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//#region MP_AvisosEmitidos
+
+
+/*
+=======================================================================================================================================================================
+upPUBLT_TABLADETABLASGetByKey
+
+SELECT 	*    FROM PUBLT_TABLADETABLAS nolock    
+WHERE  (TABLC_CODTAB = 'WEBLOG')  AND (TABLC_CODITE = '001')   
+=======================================================================================================================================================================
+objLOGBE = objLOGDA.GetByKey(Globales.cteCodEmp, "WEBLOG", "001")strLOGCarpeta = objLOGBE.TABLC_VALITE
+012	WEBLOG    	001	\\10.4.50.48\webarchives\ServiciosCFP\	     Esta es la ubicación donde se almacenará el log del app web
+
+
+objLOGBE = objLOGDA.GetByKey(Globales.cteCodEmp, "ACTWEBLOG", "001")
+012	ACTWEBLOG 	001	Activar el log del app web
+
+
+=======================================================================================================================================================================
+upPUBLT_TABLADETABLASGetAll
+=======================================================================================================================================================================
+strRutaPlantilla = New TablaDeTablasBL(Globales.cteCodEmp, "EMITIDOS","005").Lista.Item(0).TABLC_VALITE 
+012	EMITIDOS  	005	\\10.4.50.48\webarchives\AvisosEmitidosCFP\Plantilla\
+
+
+
+
+strArchivo = New TablaDeTablasBL(Globales.cteCodEmp, "EMITIDOS", "006").Lista.Item(0).TABLC_VALITE + lstTitulos.Item(0).Archivo + ".xls" 
+012	EMITIDOS  	006	\\10.4.50.48\webarchives\AvisosEmitidosCFP\Generados\
+
+
+
+*/
+
+//#endregion
+
+
+//#region MP_AvisosIbope
+
+
+/*
+=======================================================================================================================================================================
+upPUBLT_TABLADETABLASGetByKey
+
+SELECT 	*    FROM PUBLT_TABLADETABLAS nolock    
+WHERE  (TABLC_CODTAB = 'WEBLOG')  AND (TABLC_CODITE = '001')  
+=======================================================================================================================================================================
+
+objLOGBE = objLOGDA.GetByKey(Globales.cteCodEmp, "WEBLOG", "001")strLOGCarpeta = objLOGBE.TABLC_VALITE
+012	WEBLOG    	001	\\10.4.50.48\webarchives\ServiciosCFP\	     Esta es la ubicación donde se almacenará el log del app web
+
+
+objLOGBE = objLOGDA.GetByKey(Globales.cteCodEmp, "ACTWEBLOG", "001")
+012	ACTWEBLOG 	001	Activar el log del app web
+
+
+
+=======================================================================================================================================================================
+[dbo].[upPUBLT_TABLADETABLASGetAll]
+
+SELECT * FROM [dbo].[PUBLT_TABLADETABLAS] WITH(NOLOCK)
+WHERE  [TABLC_CODTAB] = 'AVISIBOPE' AND [TABLC_CODITE] = '005'AND ([TABLC_EST] <> '0') 
+=======================================================================================================================================================================
+strRutaPlantilla = New TablaDeTablasBL(Globales.cteCodEmp, "AVISIBOPE", "005").Lista.Item(0).TABLC_VALITE
+012	AVISIBOPE 	005	\\10.4.50.48\webarchives\AvisosIbopeCFP\Plantilla\	1
+
+strArchivo = New TablaDeTablasBL(Globales.cteCodEmp, "AVISIBOPE", "006").Lista.Item(0).TABLC_VALITE + lstTitulos.Item(0).Archivo + ".xls"
+012	AVISIBOPE 	006	\\10.4.50.48\webarchives\AvisosIbopeCFP\Generados\	1
+*/
+
+//#endregion
+
+
+//#region Class MP_AvisosOmitidos
+
+
+/*
+=======================================================================================================================================================================
+upPUBLT_TABLADETABLASGetByKey
+
+SELECT 	*    FROM PUBLT_TABLADETABLAS nolock    
+WHERE  (TABLC_CODTAB = 'WEBLOG')  AND (TABLC_CODITE = '001')  
+=======================================================================================================================================================================
+
+objLOGBE = objLOGDA.GetByKey(Globales.cteCodEmp, "WEBLOG", "001")strLOGCarpeta = objLOGBE.TABLC_VALITE
+012	WEBLOG    	001	\\10.4.50.48\webarchives\ServiciosCFP\	     Esta es la ubicación donde se almacenará el log del app web
+
+
+objLOGBE = objLOGDA.GetByKey(Globales.cteCodEmp, "ACTWEBLOG", "001")
+012	ACTWEBLOG 	001	Activar el log del app web
+=======================================================================================================================================================================
+
+
+*/
+
+
+
+
+
+//#endregion 
+
+
+//#region MP_CargaPlantillaProgramacion
+/*
+=======================================================================================================================================================================
+upPUBLT_TABLADETABLASGetByKey
+
+SELECT 	*    FROM PUBLT_TABLADETABLAS nolock    
+WHERE  (TABLC_CODTAB = 'WEBLOG')  AND (TABLC_CODITE = '001')  
+=======================================================================================================================================================================
+
+objLOGBE = objLOGDA.GetByKey(Globales.cteCodEmp, "WEBLOG", "001")strLOGCarpeta = objLOGBE.TABLC_VALITE
+012	WEBLOG    	001	\\10.4.50.48\webarchives\ServiciosCFP\	     Esta es la ubicación donde se almacenará el log del app web
+
+
+objLOGBE = objLOGDA.GetByKey(Globales.cteCodEmp, "ACTWEBLOG", "001")
+012	ACTWEBLOG 	001	Activar el log del app web
+=======================================================================================================================================================================
+upPUBLT_TABLADETABLASGetAllxValite
+
+SELECT [TABLC_CODEMP]
+      ,[TABLC_CODTAB]
+      ,[TABLC_CODITE]
+      ,[TABLC_VALITE]
+      ,[TABLC_EST]
+      ,[TABLC_USRMOD]
+      ,[TABLC_FECMOD]
+      ,[TABLC_PCMOD]
+      ,rtrim(ltrim(TABLC_NEMONICO)) TABLC_NEMONICO
+      ,CASE WHEN [TABLC_EST]=1 THEN 'ACTIVO' ELSE 'INACTIVO' END TABLC_ESTTexto 
+  FROM [dbo].[PUBLT_TABLADETABLAS]
+  WHERE [TABLC_CODTAB] = 'DIRPROGRAM' AND ([TABLC_EST] <> '0')
+ ORDER BY [TABLC_VALITE]
+=======================================================================================================================================================================
+
+
+objTablaDeTablasBEList = New TablaDeTablasBL().ListarPorTab(Globales.cteCodEmp, "DIRPROGRAM")
+
+012	DIRPROGRAM	001	\\10.4.50.48\WEBARCHIVES\PlantillasCargaDiaria\
+012	DIRPROGRAM	002	\\10.4.50.48\WEBARCHIVES\PlantillasCargaDiaria\Errores\
+012	DIRPROGRAM	003	\\10.4.50.48\WEBARCHIVES\PlantillasCargaDiaria\Genericas\
+012	DIRPROGRAM	004	\\10.4.50.48\WEBARCHIVES\PlantillasCargaDiaria\Procesados\
+012	DIRPROGRAM	006	00
+012	DIRPROGRAM	005	01
+012	DIRPROGRAM	007	23
+012	DIRPROGRAM	008	59
+012	DIRPROGRAM	009	tgpesvlcli1175
+012	DIRPROGRAM	010	USU003
+=======================================================================================================================================================================
+
+*/
+//#endregion
+
+
+//#region  MP_CargaPlantillaProgramacionFueraDeHora
+/*
+=======================================================================================================================================================================
+upPUBLT_TABLADETABLASGetByKey
+
+SELECT 	*    FROM PUBLT_TABLADETABLAS nolock    
+WHERE  (TABLC_CODTAB = 'WEBLOG')  AND (TABLC_CODITE = '001')  
+=======================================================================================================================================================================
+
+objLOGBE = objLOGDA.GetByKey(Globales.cteCodEmp, "WEBLOG", "001")strLOGCarpeta = objLOGBE.TABLC_VALITE
+012	WEBLOG    	001	\\10.4.50.48\webarchives\ServiciosCFP\	     Esta es la ubicación donde se almacenará el log del app web
+
+
+objLOGBE = objLOGDA.GetByKey(Globales.cteCodEmp, "ACTWEBLOG", "001")
+012	ACTWEBLOG 	001	Activar el log del app web
+=======================================================================================================================================================================
+
+
+=======================================================================================================================================================================
+[dbo].[upPUBLT_TABLADETABLASGetAll]
+	SELECT *
+	FROM [dbo].[PUBLT_TABLADETABLAS] WITH(NOLOCK)
+	WHERE 
+	[TABLC_CODTAB] = 'DIRPROGRAM' 
+	
+=======================================================================================================================================================================
+
+objTablaDeTablasBEList = New TablaDeTablasBL().ListarPorTab(Globales.cteCodEmp, "DIRPROGRAM")
+012	DIRPROGRAM	001	\\10.4.50.48\WEBARCHIVES\PlantillasCargaDiaria\		            Servicio carga plantillas de programación: Ruta en donde se buscarán los archivos excel a cargar.
+012	DIRPROGRAM	002	\\10.4.50.48\WEBARCHIVES\PlantillasCargaDiaria\Errores\		    Servicio carga plantillas de programación: Ruta en donde se colocaran los archivos excel procesados con error.
+012	DIRPROGRAM	003	\\10.4.50.48\WEBARCHIVES\PlantillasCargaDiaria\Genericas\		Servicio carga plantillas de programación: Ruta en donde se colocaran los archivos excel genéricos a cargar.
+012	DIRPROGRAM	004	\\10.4.50.48\WEBARCHIVES\PlantillasCargaDiaria\Procesados\		Servicio carga plantillas de programación: Ruta en donde se colocaran los archivos excel cargados correctamente.
+012	DIRPROGRAM	005	01		                                                        Servicio carga plantillas de programación: Hora de inicio por defecto
+012	DIRPROGRAM	006	00                                                          	Servicio carga plantillas de programación: Minuto de inicio por defecto
+012	DIRPROGRAM	007	23	                                                        	Servicio carga plantillas de programación: Hora fin por defecto
+012	DIRPROGRAM	008	59  	                                                    	Servicio carga plantillas de programación: Minuto fin por defecto
+012	DIRPROGRAM	009	tgpesvlcli1175		                                            Servicio carga plantillas de programación: HostName del proceso
+012	DIRPROGRAM	010	USU003		                                                    Servicio carga plantillas de programación: Usuario del proceso
+=======================================================================================================================================================================
+
+*/
+//#endregion
+
+
+
+
+
+//#region  MP_CargaPlantillaProgramacionyProgAut
+/*
+56  oTablaDeTablasBEList = New TablaDeTablasBL().ListarPorTab(sCodigoEmpresa, "RUTPLANPRG")
+
+012	RUTPLANPRG	002	D:\WEBARCHIVES\PlantillasProgramacionCFP\Destino\	Carga automátidad de la Plantilla de Programación. Ruta Destino: Lugar donde el RPA almacenará los archivos formateados.
+012	RUTPLANPRG	004	D:\WEBARCHIVES\PlantillasProgramacionCFP\Observados\	Carga automátidad de la Plantilla de Programación. Ruta Observados: Lugar donde el proceso MCI almacenará los archivos que no fueron observados por tener alguna observación.
+012	RUTPLANPRG	001	D:\WEBARCHIVES\PlantillasProgramacionCFP\Origen\	Carga automátidad de la Plantilla de Programación. Ruta Origen: Lugar donde el usuario guardará sus archivos a ser procesados.
+012	RUTPLANPRG	003	D:\WEBARCHIVES\PlantillasProgramacionCFP\Procesados\	Carga automátidad de la Plantilla de Programación. Ruta Procesado: Lugar donde el proceso MCI almacenará los archivos procesados.
+
+
+*/
+//#endregion
+
+
+
+
+
+//#region MP_ContratosSobregirados
+/*
+ Dim strRuta As String = New TablaDeTablasBL(Globales.cteCodEmp, "ARLDIR", Nothing).Lista(0).TABLC_VALITE
+reader = New StreamReader(strRuta & "\Correo\Plantillas\ContratoSobregirado.txt")
+
+012	ARLDIR    	001	\\10.4.50.48\WEBARCHIVES
+012	ARLDIR    	002	\\10.4.50.48\WEBARCHIVES\SERVICIOSCFP
+\\10.4.50.48\WEBARCHIVES\SERVICIOSCFP\Correo\Plantillas\ContratoSobregirado.txt
+\\10.4.50.48\WEBARCHIVES\ContratoSobregirado.txt
+\SERVICIOS\PLANTILLAS\TemplateReporteEstadoCuenta.xls
+
+\\10.4.50.48\WEBARCHIVES\SERVICIOS\PLANTILLAS\TemplateReporteEstadoCuenta.xls
+*/
+//#endregion
+
+
+//#region 
+/*
+
+*/
+//#endregion
+
+
+//#region 
+/*
+
+*/
+//#endregion

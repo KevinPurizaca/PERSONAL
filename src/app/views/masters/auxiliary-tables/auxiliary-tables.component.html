@@ -14,7 +14,7 @@
             <div class="col-12 md:col-3">
                 <label class="label-filter-text">Estado</label>                
                 <p-dropdown formControlName="intState"  [placeholder]="vMessageSelect" 
-                optionLabel="value" optionValue="id" appendTo="body"
+                optionLabel="vvalue1" optionValue="id" appendTo="body"
                 [emptyMessage]="vMessageEmpty" [options]="lstState" ></p-dropdown>
               </div>
         </div>
@@ -41,27 +41,28 @@
   styleClass="mt-3" responsiveLayout="scroll"  styleClass="p-datatable-gridlines">
     <ng-template pTemplate="header">
       <tr>
-        <th style="min-width:150px">Id</th>
-        <th style="min-width:150px">Descripción</th>
-        <th style="min-width:150px">Estado</th>
-
-        <th style="min-width:200px" pFrozenColumn alignFrozen="right">Acciones</th>
+        <th style="min-width:5rem">Id</th>
+        <th style="min-width:30rem">Descripción</th>
+        <th style="min-width:15rem">Estado</th>
+        <th style="min-width:5rem" pFrozenColumn alignFrozen="right">Acciones</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>
       <tr>
-        <td style="width:200px" class="font-bold">{{data.vcode}}</td>
-        <td style="width:200px">{{data.vdescription}}</td>
-        <td style="width:200px">{{data.vstate_record}}</td>
-        <td style="width:200px" pFrozenColumn alignFrozen="right">
-          <button pButton icon="pi pi-trash" class="text-red-500 p-button-text"
-          (click)="deleteTableHeadboard($event,data)" pTooltip="Eliminar" tooltipPosition="bottom"></button>
-
-          <button pButton icon="pi pi-pencil" class="text-green-500 p-button-text"
-          (click)="viewModal(2,data)" pTooltip="Eliminar" tooltipPosition="bottom"></button>
+        <td style="min-width:5rem" class="font-bold">{{data.vcode}}</td>
+        <td style="min-width:30rem">{{data.vdescription}}</td>
+        <td style="min-width:15rem">{{data.vstate_record}}</td>
+        <td style="min-width:5rem" pFrozenColumn alignFrozen="right">
 
           <button pButton icon="pi pi-eye" class="text-blue-500 p-button-text"
-           pTooltip="Eliminar" tooltipPosition="bottom"></button>
+          (click)="viewModal(3,data)" pTooltip="Ver Detalle" tooltipPosition="bottom" ></button>
+
+          <button pButton icon="pi pi-pencil" class="text-green-500 p-button-text"
+          (click)="viewModal(2,data)" pTooltip="Editar" tooltipPosition="bottom"></button>
+
+           <button pButton icon="pi pi-trash" class="text-red-500 p-button-text"
+           (click)="deleteTableHeadboard($event,data)" pTooltip="Eliminar" tooltipPosition="bottom"></button>
+ 
         </td>
 
       </tr>
@@ -107,7 +108,7 @@
       
       <div class="col-12 md:col-12">
         <label class="label-filter-text">Estado</label>                
-        <p-dropdown formControlName="intState" [options]="lstStatus" optionLabel="value" optionValue="id"
+        <p-dropdown formControlName="intState" [options]="lstState" optionLabel="vvalue1" optionValue="id"
         [emptyMessage]="vMMessageEmpty" [placeholder]="vMessageSelect" appendTo="body"
         [(ngModel)]="lsTableHeadboardDto.istate_record"></p-dropdown>
 
@@ -122,5 +123,238 @@
   <ng-template pTemplate="footer">
     <button pButton pRipple label="Cerrar" icon="pi pi-times" class="p-button-text" (click)="vmEditRegisterTableHeadboard = false;"></button>
     <button pButton pRipple label="Guardar" icon="pi pi-save" class="p-button-text" [loading]="loadingSave" (click)="saveTableHeadboard()" ></button>
+  </ng-template>
+</p-dialog>
+
+
+<p-dialog [(visible)]="vmEditRegisterTableDetail" [draggable]="false" [style]="{width: '1000px',height:'600px'}"  
+          [closable]="false" [header]="titleEditRegisterTableDetail" [modal]="true" class="p-fluid">
+
+  <ng-template pTemplate="content">
+    <p-panel header="Registrar de Tablas Detalle" [toggleable]="false" class="line-height-3">
+      <form [formGroup]="formRegisterEditTableDetail">
+        <div class="p-fluid p-formgrid grid">
+          
+          <div class="col-12 md:col-4">
+            <label class="label-filter-text">Descripción</label>
+            <input formControlName="txtDescription"  type="text" pInputText class="p-inputtext p-component p-element"     />
+    
+              <small  *ngIf="formRegisterEditTableDetail.controls['txtDescription'].invalid && formRegisterEditTableDetail.controls['txtDescription'].touched"
+              class="text-red-600"> Ingrese Descripción</small>
+              <small *ngIf="formRegisterEditTableDetail.get('txtDescription')?.hasError('pattern')"
+              class="text-red-600">Ingrese solo Letras</small>
+          </div>
+    
+          
+          <div class="col-12 md:col-2">
+            <label class="label-filter-text">Estado</label>                
+            <p-dropdown formControlName="intState" [options]="lstState" optionLabel="vvalue1" optionValue="id"
+            [emptyMessage]="vMMessageEmpty" [placeholder]="vMessageSelect" appendTo="body"      ></p-dropdown>
+    
+            <small  *ngIf="formRegisterEditTableDetail.controls['intState'].invalid && formRegisterEditTableDetail.controls['intState'].touched"
+            class="text-red-600"> Seleccion Estado.</small>
+          </div>
+
+          <div class="col-12 md:col-2">
+            <label class="label-filter-text">Valor Texto 1</label>
+            <input formControlName="txtValueText1"  type="text" pInputText class="p-inputtext p-component p-element"     />
+    
+              <small  *ngIf="formRegisterEditTableDetail.controls['txtValueText1'].invalid && formRegisterEditTableDetail.controls['txtValueText1'].touched"
+              class="text-red-600"> Ingrese Valor Texto 1</small>
+              <small *ngIf="formRegisterEditTableDetail.get('txtValueText1')?.hasError('pattern')"
+              class="text-red-600">Ingrese solo Letras</small>
+          </div>
+
+
+          <div class="col-12 md:col-2">
+            <label class="label-filter-text">Valor Texto 2</label>
+            <input formControlName="txtValueText2"  type="text" pInputText class="p-inputtext p-component p-element"     />
+    
+              <small  *ngIf="formRegisterEditTableDetail.controls['txtValueText2'].invalid && formRegisterEditTableDetail.controls['txtValueText2'].touched"
+              class="text-red-600"> Ingrese Valor Texto 2</small>
+              <small *ngIf="formRegisterEditTableDetail.get('txtValueText2')?.hasError('pattern')"
+              class="text-red-600">Ingrese solo Letras</small>
+          </div>
+
+
+          <div class="col-12 md:col-2">
+            <label class="label-filter-text">Valor Texto 3</label>
+            <input formControlName="txtValueText3"  type="text" pInputText class="p-inputtext p-component p-element"     />
+    
+              <small  *ngIf="formRegisterEditTableDetail.controls['txtValueText3'].invalid && formRegisterEditTableDetail.controls['txtValueText3'].touched"
+              class="text-red-600"> Ingrese Valor Texto 3</small>
+              <small *ngIf="formRegisterEditTableDetail.get('txtValueText3')?.hasError('pattern')"
+              class="text-red-600">Ingrese solo Letras</small>
+          </div>
+
+
+          <div class="col-12 md:col-2">
+            <label class="label-filter-text">Valor Entero 1</label>
+            <p-inputNumber formControlName="intValueInteger1" inputId="withoutgrouping" [useGrouping]="false" 
+            [maxlength]="9" autocomplete="off"></p-inputNumber>   
+    
+            <small  *ngIf="formRegisterEditTableDetail.controls['intValueInteger1'].invalid && formRegisterEditTableDetail.controls['intValueInteger1'].touched"
+            class="text-red-600"> Ingrese  Valor Entero 1.</small>        
+          </div>
+    
+          <div class="col-12 md:col-2">
+            <label class="label-filter-text">Valor Entero 2</label>
+            <p-inputNumber formControlName="intValueInteger2" inputId="withoutgrouping" [useGrouping]="false" 
+            [maxlength]="9" autocomplete="off"></p-inputNumber>   
+    
+            <small  *ngIf="formRegisterEditTableDetail.controls['intValueInteger2'].invalid && formRegisterEditTableDetail.controls['intValueInteger2'].touched"
+            class="text-red-600"> Ingrese  Valor Entero 2.</small>        
+          </div>
+
+          <div class="col-12 md:col-2">
+            <label class="label-filter-text">Valor Entero 3</label>
+            <p-inputNumber formControlName="intValueInteger3" inputId="withoutgrouping" [useGrouping]="false" 
+            [maxlength]="9" autocomplete="off"></p-inputNumber>   
+    
+            <small  *ngIf="formRegisterEditTableDetail.controls['intValueInteger3'].invalid && formRegisterEditTableDetail.controls['intValueInteger3'].touched"
+            class="text-red-600"> Ingrese  Valor Entero 3.</small>        
+          </div>
+
+          <div class="col-12 md:col-2">
+            <label class="label-filter-text">Valor Decimal 1</label>
+            <p-inputNumber formControlName="intValueDecimal1"  inputId="locale-user" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+            <small  *ngIf="formRegisterEditTableDetail.controls['intValueDecimal1'].invalid && formRegisterEditTableDetail.controls['intValueDecimal1'].touched"
+            class="text-red-600"> Ingrese  Valor Decimal 1.</small>        
+          </div>
+
+          <div class="col-12 md:col-2">
+            <label class="label-filter-text">Valor Decimal 2</label>
+            <p-inputNumber formControlName="intValueDecimal2"  inputId="locale-user" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+            <small  *ngIf="formRegisterEditTableDetail.controls['intValueDecimal2'].invalid && formRegisterEditTableDetail.controls['intValueDecimal2'].touched"
+            class="text-red-600"> Ingrese  Valor Decimal 2.</small>        
+          </div>
+
+          <div class="col-12 md:col-2">
+            <label class="label-filter-text">Valor Decimal 3</label>
+            <p-inputNumber formControlName="intValueDecimal3"  inputId="locale-user" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+            <small  *ngIf="formRegisterEditTableDetail.controls['intValueDecimal3'].invalid && formRegisterEditTableDetail.controls['intValueDecimal1'].touched"
+            class="text-red-600"> Ingrese  Valor Decimal 3.</small>        
+          </div>
+        </div>  
+        
+        <div class="flex flex-wrap sm:flex-row">
+          <div class="sm:mr-auto mb-3 mr-3"></div>
+
+          <div class="mb-3 mr-3">
+            <button pButton label="Agregar Detalle" (click)="saveTableDetail()" saveTableDetail type="button" icon="pi pi-plus" class="p-button-help" ></button>
+          </div>
+
+          <div class="">
+            <button pButton (click)="formRegisterEditTableDetail.reset()" label="Limpiar" type="button" icon="pi pi-trash" class="p-button-outlined p-button-secondary"></button>
+          </div>
+        </div>
+       </form>
+    </p-panel>
+
+    <br>
+
+    <p-panel header="Resultado de Tablas Detalle" [toggleable]="false" class="line-height-3">
+      <p-table [value]="lstTableDetail" scrollDirection="both" [scrollable]="true" scrollHeight="400px" 
+      styleClass="mt-3" responsiveLayout="scroll"  styleClass="p-datatable-gridlines">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="min-width:5rem">Id</th>
+            <th style="min-width:15rem">Descripción</th>
+
+            <th style="min-width:10rem">Valor Texto 1</th>
+            <th style="min-width:10rem">Valor Texto 2</th>
+            <th style="min-width:10rem">Valor Texto 3</th>
+
+            <th style="min-width:10rem">Valor Integer 1</th>
+            <th style="min-width:10rem">Valor Integer 2</th>
+            <th style="min-width:10rem">Valor Integer 3</th>
+
+            <th style="min-width:10rem">Valor Decimal 1</th>
+            <th style="min-width:10rem">Valor Decimal 2</th>
+            <th style="min-width:10rem">Valor Decimal 3</th>
+
+            <th style="min-width:10rem">Estado</th>
+            <th style="min-width:7rem" pFrozenColumn alignFrozen="right">Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+          <tr>
+            <td style="min-width:5rem" class="font-bold">{{data.iid_table_detail}}</td>
+            <td style="min-width:15rem">
+              <input  [(ngModel)]="data.vdescription" type="text" pInputText class="p-inputtext p-component p-element"     />
+            </td>
+            <td style="min-width:10rem">
+              <input  [(ngModel)]="data.vvalue_text_1" type="text" pInputText class="p-inputtext p-component p-element"     />
+            </td>
+            <td style="min-width:10rem">
+              <input  [(ngModel)]="data.vvalue_text_2" type="text" pInputText class="p-inputtext p-component p-element"     />
+            </td>
+            <td style="min-width:10rem">
+              <input  [(ngModel)]="data.vvalue_text_3" type="text" pInputText class="p-inputtext p-component p-element"     />
+            </td>
+            <td style="min-width:10rem">
+              <p-inputNumber [(ngModel)]="data.vvalue_integer_1"inputId="withoutgrouping" [useGrouping]="false" 
+              [maxlength]="9" autocomplete="off"></p-inputNumber> 
+            </td>
+            <td style="min-width:10rem">
+              <p-inputNumber [(ngModel)]="data.vvalue_integer_2"inputId="withoutgrouping" [useGrouping]="false" 
+              [maxlength]="9" autocomplete="off"></p-inputNumber> 
+            </td>
+            <td style="min-width:10rem">
+              <p-inputNumber [(ngModel)]="data.vvalue_integer_3"inputId="withoutgrouping" [useGrouping]="false" 
+              [maxlength]="9" autocomplete="off"></p-inputNumber> 
+            </td>
+            <td style="min-width:10rem">
+              <p-inputNumber  [(ngModel)]="data.vvalue_decimal_1"  inputId="locale-user" [minFractionDigits]="2"
+               [maxFractionDigits]="2"></p-inputNumber>
+
+            </td>
+            <td style="min-width:10rem">
+              <p-inputNumber  [(ngModel)]="data.vvalue_decimal_2"  inputId="locale-user" [minFractionDigits]="2"
+               [maxFractionDigits]="2"></p-inputNumber>
+            </td>
+            <td style="min-width:10rem">
+              <p-inputNumber  [(ngModel)]="data.vvalue_decimal_3"  inputId="locale-user" [minFractionDigits]="2"
+               [maxFractionDigits]="2"></p-inputNumber>
+            </td>
+            <td style="min-width:10rem">
+              <p-dropdown [(ngModel)]="data.istate_record" [options]="lstState" optionLabel="vvalue1" optionValue="id"
+              [emptyMessage]="vMessageEmpty" [placeholder]="vMessageSelect" appendTo="body"      ></p-dropdown>
+            </td>
+            <td style="min-width:7rem" pFrozenColumn alignFrozen="right">
+    
+                <button pButton icon="pi pi-save" class="text-blue-500 p-button-text"
+              (click)="editTableDetail(data)" pTooltip="Editar" tooltipPosition="bottom"></button>
+    
+               <button pButton icon="pi pi-trash" class="text-red-500 p-button-text"
+               (click)="deleteTableDetail($event,data)" pTooltip="Eliminar" tooltipPosition="bottom"></button>
+     
+            </td>
+           
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="7">No se encontró Información.</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="loadingbody">
+          <tr>
+            <td colspan="7">
+              Cargando información. Espere por favor.
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-paginator [rows]="req.ilimit" [totalRecords]="totalRecord" [rowsPerPageOptions]="rowsOptions"
+      [showCurrentPageReport]="true" [first]="first"  (onPageChange)="changePageTableHeadboard($event)"
+      currentPageReportTemplate="Total : {totalRecords} registros"></p-paginator>
+    </p-panel>
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cerrar" icon="pi pi-times" class="p-button-text" (click)="vmEditRegisterTableDetail = false;"></button>
+    <!-- <button pButton pRipple label="Guardar" icon="pi pi-save" class="p-button-text" [loading]="loadingSave" (click)="saveTableHeadboard()" ></button> -->
   </ng-template>
 </p-dialog>

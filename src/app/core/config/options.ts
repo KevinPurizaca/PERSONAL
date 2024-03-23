@@ -5,7 +5,7 @@ export const ROWS_OPTIONS = [5,10, 25, 50];
 export const TIME_RETURN_TRAY = 3000;
 
 export enum PARAMS_AUXILIAR {
-    ESTADO = '1',
+    STATES = '1',
     TIPO_DOCUMENTO ='2',
 }
 
