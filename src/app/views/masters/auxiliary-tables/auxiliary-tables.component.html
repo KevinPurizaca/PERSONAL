@@ -37,22 +37,26 @@
 <br>
 
 <p-panel header="Resultado de Tablas Auxiliares" [toggleable]="false" class="line-height-3">
+
   <p-table [value]="lstTableHeadboard" scrollDirection="both" [scrollable]="true" scrollHeight="400px" 
   styleClass="mt-3" responsiveLayout="scroll"  styleClass="p-datatable-gridlines">
     <ng-template pTemplate="header">
       <tr>
-        <th style="min-width:5rem">Id</th>
+        <th style="min-width:10rem">Id</th>
+        <th style="min-width:30rem">Nombre</th>
+
         <th style="min-width:30rem">Descripción</th>
         <th style="min-width:15rem">Estado</th>
-        <th style="min-width:5rem" pFrozenColumn alignFrozen="right">Acciones</th>
+        <th style="min-width:10rem" pFrozenColumn alignFrozen="right">Acciones</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>
       <tr>
-        <td style="min-width:5rem" class="font-bold">{{data.vcode}}</td>
+        <td style="min-width:10rem" class="font-bold">{{data.vcode}}</td>
+        <td style="min-width:30rem">{{data.vdescription}}</td>
         <td style="min-width:30rem">{{data.vdescription}}</td>
         <td style="min-width:15rem">{{data.vstate_record}}</td>
-        <td style="min-width:5rem" pFrozenColumn alignFrozen="right">
+        <td style="min-width:10rem" pFrozenColumn alignFrozen="right">
 
           <button pButton icon="pi pi-eye" class="text-blue-500 p-button-text"
           (click)="viewModal(3,data)" pTooltip="Ver Detalle" tooltipPosition="bottom" ></button>

@@ -2,7 +2,6 @@ import { HttpBackend } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
-import { PanelModule } from 'primeng/panel';
 import { Endpoints } from 'src/app/core/config/endpoints';
 import { MESSAGE_EMPTY, MESSAGE_SELECT, MSG_CRUD } from 'src/app/core/config/mensajes';
 import { PARAMS_AUXILIAR, ROWS_DEFAULT, ROWS_OPTIONS } from 'src/app/core/config/options';
@@ -14,10 +13,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 @Component({
   selector: 'app-auxiliary-tables',
   standalone: true,
-  imports: [
-    PanelModule,
-    SharedModule
-    
+  imports: [    
+    SharedModule    
   ],
   templateUrl: './auxiliary-tables.component.html',
   styleUrl: './auxiliary-tables.component.scss'
@@ -333,7 +330,7 @@ export class AuxiliaryTablesComponent implements OnInit {
 //#endregion
 
   loadStateCB(){
-    this.httpCoreService.get(Endpoints.GetListTableDetailCB + this.paramTDState).subscribe(res => {
+    this.httpCoreService.getDataCb(this.paramTDState).subscribe(res => {
       if(res.isSuccess){
         this.lstState = res.data;
       }

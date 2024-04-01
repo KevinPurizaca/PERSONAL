@@ -21,4 +21,6 @@ export const Endpoints = {
   RegisterOption :'/Masters/ModuleOption/RegisterOption',
   DeleteOption   :'/Masters/ModuleOption/DeleteOption?iid_option=',
 
+
+  GetListOptionsByModulo :'/Masters/ModuleOption/GetListOptionsByModule',
 }

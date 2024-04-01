@@ -1,2 +1,276 @@
-<p>profiles works!</p>
+<p-toast key="tst" [baseZIndex]="99999"></p-toast>
+<p-confirmPopup key="deleteDetalle"></p-confirmPopup>
 
+
+<p-panel header="Busqueda de Perfiles">
+
+    <form [formGroup]="formSearch">
+        <div class="grid p-formgrid p-fluid">
+            <div class="col-12 md:col-3">
+                <label class="label-filter-text">Nombre</label>
+                <input formControlName="txtName" type="text" pInputText class="p-inputtext p-component p-element" />
+            </div>
+
+            <div class="col-12 md:col-3">
+                <label class="label-filter-text">Descripcion</label>
+                <input formControlName="txtDescription" type="text" pInputText class="p-inputtext p-component p-element" />
+            </div>
+
+            <div class="col-12 md:col-3">
+                <label class="label-filter-text">Estado</label>                
+                <p-dropdown formControlName="intState"  [placeholder]="vMessageSelect" 
+                optionLabel="vvalue1" optionValue="id" appendTo="body"
+                [emptyMessage]="vMessageEmpty" [options]="lstState" ></p-dropdown>
+              </div>
+        </div>
+
+        <div class="flex flex-wrap sm:flex-row">
+            <div class="sm:mr-auto mb-3 mr-3">
+              <button pButton label="Agregar Perfil" type="button" icon="pi pi-plus" class="p-button-help" (click)="viewModal(1,null)"></button>
+            </div>
+            <div class="mb-3 mr-3">
+              <button pButton label="Buscar" icon="pi pi-search" type="submit" class="p-button-outlined p-button-primary"></button>
+            </div>
+            <div class="">
+              <button pButton (click)="formSearch.reset()" label="Limpiar" type="button" icon="pi pi-trash" class="p-button-outlined p-button-secondary"></button>
+            </div>
+          </div>
+    </form>
+
+</p-panel>
+
+<br>
+
+<p-panel header="Resultado de Perfiles">
+  <p-table [value]="lstProfiles" scrollDirection="both" [scrollable]="true" scrollHeight="400px" 
+  styleClass="mt-3" responsiveLayout="scroll"  styleClass="p-datatable-gridlines">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="min-width:5rem">Id</th>
+        <th style="min-width:30rem">Descripción</th>
+        <th style="min-width:15rem">Estado</th>
+        <th style="min-width:5rem" pFrozenColumn alignFrozen="right">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+      <tr>
+        <td style="min-width:5rem" class="font-bold">{{data.vcode}}</td>
+        <td style="min-width:30rem">{{data.vdescription}}</td>
+        <td style="min-width:15rem">{{data.vstate_record}}</td>
+        <td style="min-width:5rem" pFrozenColumn alignFrozen="right">
+
+          <button pButton icon="pi pi-eye" class="text-blue-500 p-button-text"
+          (click)="viewModal(3,data)" pTooltip="Ver Detalle" tooltipPosition="bottom" ></button>
+
+          <button pButton icon="pi pi-pencil" class="text-green-500 p-button-text"
+          (click)="viewModal(2,data)" pTooltip="Editar" tooltipPosition="bottom"></button>
+
+           <button pButton icon="pi pi-trash" class="text-red-500 p-button-text"
+           (click)="deleteTableHeadboard($event,data)" pTooltip="Eliminar" tooltipPosition="bottom"></button>
+ 
+        </td>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">No se encontró Información.</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="loadingbody">
+      <tr>
+        <td colspan="7">
+          Cargando información. Espere por favor.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-paginator [rows]="req.ilimit" [totalRecords]="totalRecord" [rowsPerPageOptions]="rowsOptions"
+  [showCurrentPageReport]="true" [first]="first"  (onPageChange)="changePage($event)"
+  currentPageReportTemplate="Total : {totalRecords} registros"></p-paginator>
+
+</p-panel>
+
+
+<p-dialog [(visible)]="vmEditRegisterProfile" [draggable]="false" [style]="{width: '900px',height:'600px'}"  
+          [closable]="false" [header]="titleEditRegisterProfile" [modal]="true" class="p-fluid">
+
+  <ng-template pTemplate="content">
+    <p-panel header="" [toggleable]="false" class="line-height-3">
+
+    <form [formGroup]="formRegisterEditProfile">
+        <div class="grid p-formgrid p-fluid">
+            <div class="col-12 md:col-4">
+                <label class="label-filter-text">Nombre</label>
+                <input formControlName="txtName" type="text" pInputText class="p-inputtext p-component p-element" />
+            </div>
+
+            <div class="col-12 md:col-5">
+                <label class="label-filter-text">Descripcion</label>
+                <input formControlName="txtDescription" type="text" pInputText class="p-inputtext p-component p-element" />
+            </div>
+
+            <div class="col-12 md:col-3">
+                <label class="label-filter-text">Estado</label>                
+                <p-dropdown formControlName="intState"  [placeholder]="vMessageSelect" 
+                optionLabel="vvalue1" optionValue="id" appendTo="body"
+                [emptyMessage]="vMessageEmpty" [options]="lstState" ></p-dropdown>
+              </div>
+        </div>
+
+    </form>
+
+    <br>
+   
+    <p-table [value]="lstOptionsModule" rowGroupMode="subheader"
+    groupRowsBy="iid_module" styleClass="p-datatable-sm p-datatable-gridlines"
+    responsiveLayout="scroll" >
+
+    <ng-template pTemplate="header" >
+        <tr>
+            <th class="td-iid_option">
+                <span class="font-bold flex justify-content-center">#</span>
+            </th>
+            <th class="td-name">Modulo</th>
+            <th class="td-description">Opcion del Sistema</th>
+            <th class="td-check">
+              <div class="ml-4 justify-content-item">
+                <p-checkbox [binary]="true" (onChange)="selectCheckAll(lstOptionsModule, 1, $event)"
+                pTooltip="Seleccionar todo" tooltipPosition="top"></p-checkbox>&nbsp;Ver
+              </div>
+            </th>
+            <th class="td-check">
+              <div class="ml-5 justify-content-item">
+                <p-checkbox [binary]="true" (onChange)="selectCheckAll(lstOptionsModule, 2, $event)"
+                pTooltip="Seleccionar todo" tooltipPosition="top"></p-checkbox>&nbsp;Crear
+              </div>
+            </th>
+            <th class="td-check">
+              <div class="ml-6 justify-content-item">
+                <p-checkbox [binary]="true" (onChange)="selectCheckAll(lstOptionsModule, 3, $event)"
+                pTooltip="Seleccionar todo" tooltipPosition="top"></p-checkbox>&nbsp;Editar
+              </div>
+            </th>
+            <th class="td-check">
+              <div class="ml-6 justify-content-item">
+                <p-checkbox [binary]="true" (onChange)="selectCheckAll(lstOptionsModule, 4, $event)"
+                pTooltip="Seleccionar todo" tooltipPosition="top"></p-checkbox>&nbsp;Borrar
+              </div>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="groupheader" let-data>
+        <tr pRowGroupHeader class="table-criterio-dialog">
+            <td class="txt-black-white td-iid_option" >
+              <span class="font-bold flex justify-content-center">{{data.iid_module}}</span>
+            </td>
+
+            <td class="txt-black-white td-name">
+                <span class="font-bold uppercase">{{data.vname_module}}</span>
+            </td>
+
+            <td class="txt-black-white td-description">
+              <span class="font-bold uppercase">OPCIÓN DEL SISTEMA</span>
+            </td>
+
+            <td class="txt-black-white td-check">
+              <div class="ml-4 justify-content-item">
+                <p-checkbox [binary]="true" (onChange)="selectCheckAllModule(lstOptionsModule, data.iid_module, 1, $event)"
+                pTooltip="Seleccionar Sub Módulo" tooltipPosition="top">
+                </p-checkbox> Ver
+              </div> 
+
+            </td>
+            <td class="txt-black-white td-check">
+              <div class="ml-5 justify-content-item">
+                <p-checkbox [binary]="true" (onChange)="selectCheckAllModule(lstOptionsModule, data.iid_module, 2, $event)"
+                pTooltip="Seleccionar Sub Módulo" tooltipPosition="top">
+                </p-checkbox> Crear
+              </div> 
+
+            </td>
+            <td class="txt-black-white td-check">
+              <div class="ml-6 justify-content-item">
+                <p-checkbox [binary]="true" (onChange)="selectCheckAllModule(lstOptionsModule, data.iid_module, 3, $event)"
+                pTooltip="Seleccionar Sub Módulo" tooltipPosition="top">
+                </p-checkbox> Editar
+              </div> 
+
+            </td>
+            <td class="txt-black-white td-check">
+              <div class="ml-6 justify-content-item">
+                <p-checkbox [binary]="true" (onChange)="selectCheckAllModule(lstOptionsModule, data.iid_module, 4, $event)"
+                pTooltip="Seleccionar Sub Módulo" tooltipPosition="top">
+                </p-checkbox> Borrar
+              </div>               
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-detalle let-rowIndex="rowIndex">
+        <tr>
+          <td class="txt-black-white td-iid_option" >
+            <!-- <span class="font-bold flex justify-content-center">{{detalle.iid_option}}</span> -->
+          </td>
+
+          <td class="td-name">
+            <span class="flex justify-content-start ">{{detalle.vname_module}}</span>
+          </td>
+
+          <td class="td-description">
+            <span class="flex justify-content-start">{{detalle.vname_option}}</span>
+          </td>
+
+          <td class="td-check">
+            <div class="justify-content-item">
+              <p-checkbox [(ngModel)]="detalle.iaccess_view" [binary]="true" (onChange)="selectCheck(detalle, 1, $event)"
+              [ngModelOptions]="{ standalone: true }">
+              </p-checkbox>
+            </div>   
+          </td>
+          <td class="td-check">
+            <div class="justify-content-item">
+              <p-checkbox [(ngModel)]="detalle.iaccess_create" [binary]="true" (onChange)="selectCheck(detalle, 2, $event)"
+              [ngModelOptions]="{ standalone: true }">
+              </p-checkbox>
+            </div>            
+          </td>
+          <td class="td-check">
+            <div class="justify-content-item">
+              <p-checkbox [(ngModel)]="detalle.iaccess_update" [binary]="true" (onChange)="selectCheck(detalle, 3, $event)"
+              [ngModelOptions]="{ standalone: true }">
+              </p-checkbox>
+            </div>            
+          </td>
+          <td class="td-check">
+            <div class="justify-content-item">
+              <p-checkbox [(ngModel)]="detalle.iaccess_delete" [binary]="true" (onChange)="selectCheck(detalle, 4, $event)"
+              [ngModelOptions]="{ standalone: true }">
+              </p-checkbox>
+            </div>            
+          </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="7">No se encontró Información.</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="loadingbody">
+        <tr>
+            <td colspan="7">
+                Cargando Información. Espere por favor.
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+  
+  </p-panel>
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cerrar" icon="pi pi-times" class="p-button-text" (click)="vmEditRegisterProfile = false;"></button>
+    <button pButton pRipple label="Guardar" icon="pi pi-save" class="p-button-text" (click)="saveProfile()"></button>
+
+  </ng-template>
+</p-dialog>

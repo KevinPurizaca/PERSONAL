@@ -4,13 +4,17 @@ import { environment } from 'src/environments/environment';
 import { iif, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { Endpoints } from '../config/endpoints';
 
 @Injectable()
 export class HttpCoreService {
 
   constructor(
     private http: HttpClient, 
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
+
 
     ) { }
 
@@ -29,6 +33,24 @@ export class HttpCoreService {
       }),
       catchError(err => {
         return this.EstatusError(err);
+      }),
+    );
+  }
+  public getDataCb(param: string): Observable<any> {
+    const url = environment.UrlBase + Endpoints.GetListTableDetailCB + param;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http.get<any[]>(url, httpOptions).pipe(
+      tap((data: any) => {
+
+      }),
+      catchError(err => {
+         return err;//this.EstatusError(err);
       }),
     );
   }
@@ -182,32 +204,34 @@ export class HttpCoreService {
   }
 
   EstatusError(err: any): any {
-    //debugger;
-    let message_error:string ='' 
-    if (err.status == 0) {
-      message_error = 'Error, la conexion con el servidor no es posible: %', err.message+ ' ' + (err.error!=null?err.error.innerException:null)
-      console.error(message_error);
-      throw message_error ;
-    }
-    if (err.status == 401) {
-      message_error ='Error, Falta de Autorización: ' + err.message+ ' ' + (err.error!=null?err.error.innerException:null);
-      console.error(message_error);
-      this.router.navigate(['/login']);
-      throw message_error ;     
-    }
-    if (err.status == 400) {
-      message_error ='Error, Servicio com Problemas: ' + err.message + ' ' + (err.error!=null?err.error.innerException:null) ;
-      console.error(message_error);
+    let message_error: string = '';
+  
+    switch (err.status) {
+      case 0:
+        message_error = `Error, la conexión con el servidor no es posible: ${err.message} ${(err.error != null ? err.error.innerException : '')}`;
+        console.error(message_error);
+        this.messageService.add({key: 'tst', severity: 'error',summary: 'Error Message',detail: message_error });
+        throw message_error;
+      case 401:
+        message_error = `Error, Falta de Autorización: ${err.message} ${(err.error != null ? err.error.innerException : '')}`;
+        this.messageService.add({key: 'tst', severity: 'error',summary: 'Error Message',detail: message_error });
+        console.error(message_error);
+        this.router.navigate(['/login']);
+        throw message_error;
+      case 400:
+        message_error = `Error, Servicio con Problemas: ${err.message} ${(err.error != null ? err.error.innerException : '')}`;
+        this.messageService.add({key: 'tst', severity: 'error',summary: 'Error Message',detail: message_error });
+        console.error(message_error);
+        throw message_error;
+      case 403:
+        message_error = `Error, Falta de permisos para el servicio: ${err.message} ${(err.error != null ? err.error.innerException : '')}`;
+        this.messageService.add({key: 'tst', severity: 'error',summary: 'Error Message',detail: message_error });
+        console.error(message_error);
+        throw message_error;
+      default:
+        this.messageService.add({key: 'tst', severity: 'error',summary: 'Error Message',detail: err.error });
 
-      throw message_error ;
+        throw `Error en la fuente. Detalles: ${err.error}`;
     }
-    if (err.status == 403) {
-      message_error ='Error, Falta de permisos para el servicio: ' + err.message+ ' ' + (err.error!=null?err.error.innerException:null);
-      console.error(message_error);
-      throw message_error ;
-    }
-    throw 'Error in source. Details: ' + err.error;
-   // return  err.error;
-
   }
-}
+}  

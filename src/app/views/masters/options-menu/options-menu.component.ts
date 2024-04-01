@@ -80,6 +80,8 @@ export class OptionsMenuComponent implements OnInit{
   lsModuleDto! :any;
   lsOptionsDto! :any;
 
+  firstOptions:number = 0;
+  totalRecordOptions:number = 0;
 
   
   paramTDState = PARAMS_AUXILIAR.STATES;
@@ -156,7 +158,8 @@ export class OptionsMenuComponent implements OnInit{
         this.titleEditRegisterOptions  = "Opciones Modulo"
         this.lsOptionsDto = {};
         this.lsOptionsDto.iid_module = item.iid_module;  
-        this.loadDataOption(item.iid_module)  ;    
+        this.reqOptions.iid_module = item.iid_module;
+        this.loadDataOption(this.reqOptions)  ;    
         this.vmEditRegisterOption  = true;
         break;
     }
@@ -240,21 +243,19 @@ export class OptionsMenuComponent implements OnInit{
 
   //#region OPTIONS
 
-  loadDataOption(iid_module:any){
+  loadDataOption(req:any){
     this.lstOptions =[];
-    this.reqOptions.iid_module =  iid_module;
 
-    this.httpCoreService.post(this.reqOptions,Endpoints.GetListOption).subscribe(res => {
+    this.httpCoreService.post(req,Endpoints.GetListOption).subscribe(res => {
       if(res.isSuccess){
         this.lstOptions = res.data;       
-        this.totalRecord = res.iTotal_record;
+        this.totalRecordOptions = res.iTotal_record;
       }
       else {
         this.commonService.HanddleErrorMessage(res);
       }
     })
   }
-
 
   saveOrEditOption(isEdit: boolean, data: any) {
     
@@ -273,7 +274,8 @@ export class OptionsMenuComponent implements OnInit{
         if (res.isSuccess) {
           this.formRegisterEditOption.reset();
           this.commonService.HanddleInfoMessage(MSG_CRUD.MSG_ACTUALIZADA_REGISTRADA);
-          this.loadDataOption(data.iid_module);
+          this.reqOptions.iid_module = data.iid_module;
+          this.loadDataOption(this.reqOptions);
         } else {
           this.commonService.HanddleErrorMessage(res);
         }
@@ -322,7 +324,8 @@ export class OptionsMenuComponent implements OnInit{
         this.httpCoreService.delete(Endpoints.DeleteOption+item.iid_option).subscribe(res => {
           if (res.isSuccess) {
             this.commonService.HanddleInfoMessage(MSG_CRUD.MSG_ELIMINADA);
-            this.loadDataOption(item.iid_module);
+            this.reqOptions.iid_module = item.iid_module;
+            this.loadDataOption(this.reqOptions);
           }
           else {
             this.commonService.HanddleErrorMessage(res);
@@ -333,6 +336,15 @@ export class OptionsMenuComponent implements OnInit{
       reject: () => { }
     });
   }
+
+  
+  changePageOptions(event: any) {
+    this.reqOptions.iindex = event.first;
+    this.reqOptions.ilimit = event.rows;
+    this.first = event.first;
+    this.loadDataOption(this.reqOptions);
+  }
+
   //#endregion
 
 
@@ -384,7 +396,7 @@ export class OptionsMenuComponent implements OnInit{
   //#endregion
 
   loadStateCB(){
-    this.httpCoreService.get(Endpoints.GetListTableDetailCB + this.paramTDState).subscribe(res => {
+    this.httpCoreService.getDataCb(this.paramTDState).subscribe(res => {
       if(res.isSuccess){
         this.lstState = res.data;
       }
