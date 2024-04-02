@@ -162,14 +162,16 @@ export class ProfilesComponent implements OnInit{
     let options: any[] = this.lstOptionsModule.map((x: any) => ({
       iid_module: x.iid_module,
       iid_option: x.iid_option,
-      iaccess_view: !!x.iaccess_view,
-      iaccess_create: !!x.iaccess_create,
-      iaccess_update: !!x.iaccess_update,
-      iaccess_delete: !!x.iaccess_delete,
+      iid_profile : x.iid_profile,
+      baccess_view:   !!x.baccess_view,
+      baccess_create: !!x.baccess_create,
+      baccess_update: !!x.baccess_update,
+      baccess_delete: !!x.baccess_delete,
   }));
   
 
     let req ={
+      iid_profile : 0,// x.iid_profile,
       vname_profile         : value.txtName,
       vdescription_profile  : value.txtDescription,
       istate_record         : value.intState,
@@ -181,13 +183,13 @@ export class ProfilesComponent implements OnInit{
     select.forEach(function (value: any) {
       switch (colum) {
         case 1:
-          value.iaccess_view = event.checked; break;
+          value.baccess_view = event.checked; break;
         case 2:
-          value.iaccess_create = event.checked; break;
+          value.baccess_create = event.checked; break;
         case 3:
-          value.iaccess_update = event.checked; break;
+          value.baccess_update = event.checked; break;
         case 4:
-          value.iaccess_delete = event.checked; break;
+          value.baccess_delete = event.checked; break;
       }
     });
   }
@@ -196,13 +198,13 @@ export class ProfilesComponent implements OnInit{
      lista.filter((x: any) => x.iid_module == idModule).forEach((value: any) => {
        switch (colum) {
          case 1:
-           value.iaccess_view = event.checked; break;
+           value.baccess_view = event.checked; break;
          case 2:
-           value.iaccess_create = event.checked; break;
+           value.baccess_create = event.checked; break;
          case 3:
-           value.iaccess_update = event.checked; break;
+           value.baccess_update = event.checked; break;
          case 4:
-           value.iaccess_delete = event.checked; break;
+           value.baccess_delete = event.checked; break;
        }
      });
    }
@@ -210,13 +212,13 @@ export class ProfilesComponent implements OnInit{
    selectCheck(select: any, colum: any, event: any) {
     switch (colum) {
       case 1:
-        select.iaccess_view = event.checked; break;
+        select.baccess_view = event.checked; break;
       case 2:
-        select.iaccess_create = event.checked; break;
+        select.baccess_create = event.checked; break;
       case 3:
-        select.iaccess_update = event.checked; break;
+        select.baccess_update = event.checked; break;
       case 4:
-        select.iaccess_delete = event.checked; break;
+        select.baccess_delete = event.checked; break;
     }
   }
 }
